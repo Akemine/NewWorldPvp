@@ -1,0 +1,43 @@
+.server-select{
+    width: 32%;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 18px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #232220;
+    color: #ffffff;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 3%;
+    transition: 1s;
+}
+
+.server-select:hover{
+    background-color: #161513;
+    color: #ffb10f;
+    transition: 1s;
+}
+
+.server-option{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-align-last: center;
+}

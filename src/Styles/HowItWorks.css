@@ -1,0 +1,19 @@
+.howItWorks-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #232220;
+    margin: 0 auto;
+    width: 70%;
+    border-radius: 30px;
+    text-align: justify;
+    color: #c3c3c3;
+}
+
+.howItWorks-content{
+    margin: 3%;
+}
+
+.howItWorks-title{
+    font-weight: bold;
+}

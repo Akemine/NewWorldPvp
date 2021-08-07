@@ -1,0 +1,82 @@
+.middleMenu-main{
+    background-color: rgb(35 34 32 / 80%);
+    width: 45%;
+    height: 500px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: inherit;
+    overflow-y: auto;
+}
+
+.middleMenu-leaderboard{
+    width: 80%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #d2d2d2;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #232220;
+    border-radius: 10px;
+    transition: 2s;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #071438;
+    border-radius: 10px;
+    transition: 2s;
+  }
+
+.list-guild{
+    text-align: left;
+}
+
+.list-guild-action{
+    text-decoration: none;
+}
+
+.syndicate-color{
+    color: #bf0abf;
+}
+
+.marauders-color{
+    color: rgb(5, 143, 5);
+}
+
+.covenant-color{
+    color: #ca8c00;
+}
+
+.list-leaderboard{
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.list-flexbox-leaderboard-connected{
+    display: flex;
+    flex-direction: row;
+    margin:3px;
+    justify-content: space-between;
+    
+}
+
+.list-flexbox-leaderboard{
+    display: flex;
+    flex-direction: row;
+    margin:3px;
+    justify-content: center;
+}

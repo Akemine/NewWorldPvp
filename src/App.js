@@ -1,24 +1,54 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import MainContent from './Components/MainContent/MainContent';
+import Login from './Components/Login';
+import HowItWorks from './Components/HowItWorks'
+import NotFound from './Components/NotFound'
+import Gvg from './Components/GvgContent/Gvg';
+
+
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Router>
+      <div className="App">
+        <div className="Header">
+          <Navbar />
+        </div>
+        <div>
+        <Switch>
+            <Route path="/">
+                <MainContent />
+            </Route>
+            <Route path="/login">
+                <Login />
+            </Route>
+            <Route path="/gvg">
+                <Gvg />
+            </Route>
+            <Route path="/howitworks">
+                <HowItWorks />
+            </Route>
+            <Route path='*' exact={true} component={NotFound} />
+        </Switch>
+        </div>
+        <div className="Footer">
+          <Footer /> 
+        </div>
+      </div>
+    </Router>
   );
 }
 

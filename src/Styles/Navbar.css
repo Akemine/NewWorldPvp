@@ -1,0 +1,47 @@
+.header{
+    background-color: rgb(35 34 32 / 70%);
+    display: flex;
+    width: 100%;
+}
+
+.nav-menu{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 1.1vw;
+    color: white;
+}
+
+.nav-menu-connection{
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+
+.logo{
+    height: auto;
+}
+
+.btnNavbar{
+    text-decoration: none;
+    color: white;
+}
+
+.btnNavbar:hover{
+    color: #ffb10f;
+}
+
+.connection{
+    color: white;
+}
+
+.color-guild-name{
+    color: #ffb10f;
+}
+
+.disconnect-button{
+    font-weight: bold;
+}

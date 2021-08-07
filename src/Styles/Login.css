@@ -1,0 +1,128 @@
+.label{
+    color: white;
+}
+
+.form-display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(35 34 32 / 80%);
+    margin: 0 auto;
+    width: 30%;
+    border-radius: 30px;
+}
+
+.btn-submit{
+    width: 80%;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 18px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #04AA6D;
+    color: #ffffff;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 6%;
+    transition: 1s;
+}
+
+.btn-submit:hover{
+    background-color: #026944;
+    transition: 1s;
+    color: black;
+}
+.label-name{
+    width: 80%;
+    text-align: left;
+    margin-top: 6%;
+}
+
+.label-password{
+    width: 80%;
+    text-align: left;
+}
+
+.input-css{
+    width: 80%;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 18px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: black;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 6%;
+    transition: 1s;
+}
+
+.input-css-error{
+    width: 80%;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 18px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: black;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 6%;
+    transition:  1s;
+    background-color: crimson;
+}
+
+
+.title-form{
+    color: white;
+}
+
+.hr-form{
+    width: 50%;
+}
