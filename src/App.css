@@ -24,11 +24,12 @@
 body{
   background: no-repeat url("./asset/bg_newworld.jpg");
   background-size: cover;
-  font-family: Georgia, serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .span-white{
   color: white;
+  font-weight: bold;
 }
 
 .App-logo {
@@ -66,4 +67,15 @@ body{
   }
 }
 
+
+
+.bold-txt{
+  font-weight: bold;
+}
+
+.btn-no-deco{
+  text-decoration: none;
+  color:white;
+  font-weight: bold;
+}
 

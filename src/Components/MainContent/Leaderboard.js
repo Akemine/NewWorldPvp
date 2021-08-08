@@ -11,8 +11,9 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import bg_dark from '../../asset/bg_newworld_dark.jpg'
+import icon_covenant from '../../asset/covenant-icon.png'
 
+const leaderboard = 'LEADERBOARD'
 
 class Leaderboard extends Component {
 
@@ -39,24 +40,24 @@ class Leaderboard extends Component {
         }
     }
       
-      
     render() {
         if(!this.props.ConnectState){
             return (
                 <div className="middleMenu-main scroller">
+                    
                     <div className="middleMenu-leaderboard">
-                        <p className="title" fixed>Leaderboard</p>
+                        <p className="title" fixed>{leaderboard} </p>
                         <div className="list-leaderboard">
                         
                         {this.state.guilds.map(function(guild, i) { 
                             if(guild.faction === 'Syndicate'){
-                                return <div class="list-flexbox-leaderboard"><div>{i+1} - </div><div key={guild.id} className="syndicate-color">{guild.nom} ({guild.pseudo})</div> </div>
+                                return <div class="list-flexbox-leaderboard"><div>{i+1} - </div><div key={guild.id} className="syndicate-color">{guild.guild_name} ({guild.pseudo})</div> </div>
                             }
                             else if(guild.faction === 'Marauders'){
-                                return <div class="list-flexbox-leaderboard"><div>{i+1} - </div><div key={guild.id} className="marauders-color">{guild.nom} ({guild.pseudo})</div></div>
+                                return <div class="list-flexbox-leaderboard"><div>{i+1} - </div><div key={guild.id} className="marauders-color">{guild.guild_name} ({guild.pseudo})</div></div>
                             }
                             else{
-                                return <div class="list-flexbox-leaderboard"><div>{i+1} - </div><div key={guild.id} className="covenant-color">{guild.nom} ({guild.pseudo})</div></div>
+                                return <div class="list-flexbox-leaderboard"><div>{i+1} - </div><div key={guild.id} className="covenant-color">{guild.guild_name} ({guild.pseudo})</div></div>
                             }
                         })
                         }
@@ -70,25 +71,25 @@ class Leaderboard extends Component {
                 <div className="middleMenu-main scroller">
                     <ToastContainer hideProgressBar={false} autoClose={3000} position="top-center" />
                     <div className="middleMenu-leaderboard">
-                        <p className="title" fixed>Leaderboard</p>
+                        <p className="title" fixed>LEADERBOARD</p>
                         <div className="list-leaderboard">
                         {this.state.guilds.map(function(guild, i) { 
                             if(guild.faction === 'Syndicate'){
                                 return <div className="list-flexbox-leaderboard-connected">
                                     <div>{i+1} - </div>
-                                            <div key={guild.id} className="syndicate-color">{guild.nom} ({guild.pseudo})</div>
+                                            <div key={guild.id} className="syndicate-color">{guild.guild_name} ({guild.pseudo})</div>
                                     </div>
                             }
                             else if(guild.faction === 'Marauders'){
                                 return <div className="list-flexbox-leaderboard-connected">
                                     <div>{i+1} - </div>
-                                        <div key={guild.id} className="marauders-color">{guild.nom} ({guild.pseudo})</div>
+                                        <div key={guild.id} className="marauders-color">{guild.guild_name} ({guild.pseudo})</div>
                                     </div>
                             }
                             else{
                                 return <div className="list-flexbox-leaderboard-connected">
                                     <div>{i+1} - </div>
-                                        <div key={guild.id} className="covenant-color">{guild.nom} ({guild.pseudo})</div>
+                                        <div key={guild.id} className="covenant-color">{guild.guild_name} ({guild.pseudo})</div>
                                 </div>
                             }
                         })

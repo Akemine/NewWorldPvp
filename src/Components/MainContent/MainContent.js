@@ -4,21 +4,57 @@ import ServerChoice from './ServerChoice'
 
 import UpcomingWars from './UpcomingWars';
 import Leaderboard from './Leaderboard';
-import LastWars from './LastWars';
+import LastWars from './LastResults';
 
-export default class MainContent extends Component {
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+
+class MainContent extends Component {
     render() {
-        return (
-            <div>
-                <div className="main-search">
-                    <ServerChoice userID="test"/> 
-                </div>
-                <div className="main-content">
-                    <LastWars/>
+        if(this.props.ConnectState){
+            return (
+                <div>
+                    {/* <div className="main-search">
+                        <ServerChoice userID="test"/> 
+                    </div> */}
+                    <div className="main-content">
                     <Leaderboard/>
-                    <UpcomingWars/> 
-                </div>
-          </div>
-        )
+                        <LastWars/>
+                        
+                    </div>
+              </div>
+            )
+        }
+        else {
+            return (
+                <div>
+                    {/* <div className="main-search">
+                        <ServerChoice userID="test"/> 
+                    </div> */}
+                    <div className="main-content">
+                    <Leaderboard/>
+                        <LastWars/>
+                        
+                    </div>
+              </div>
+            )
+        }
+
       }
 }
+
+const mapStateToProps = state => {
+    return {
+        ConnectState: state.ConnectState,
+        Login: state.Login,
+        Password: state.password
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainContent));

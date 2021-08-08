@@ -45,7 +45,7 @@ class warAcceptOrRefuse extends React.Component {
     // LES CALLS D'API ////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // Cherche les wars qu'on peut accepter ou refuser
-    async findWarIHaveToAcceptOrDecline(){
+    async findWarIHaveToAcceptOrDecline() {
         await fetch('http://localhost:5000/api/v1/getMyWarIHaveToAccept', {
             method: "POST",
             body: JSON.stringify({
@@ -58,47 +58,47 @@ class warAcceptOrRefuse extends React.Component {
             .then(response => response.json())
             .then(response => {
                 this.setState({ warAcceptOrRefuse: response })
-        })
+            })
     }
-    
+
     // API CALL
     // PERMET DE PASSER A TRUE LA VALEUR DE LA WAR POUR DIRE QU'ELLE EST ACCEPTE
-    async acceptWar(id){
-        
+    async acceptWar(id) {
+
         await fetch('http://localhost:5000/api/v1/acceptWar', {
             method: "POST",
             body: JSON.stringify({
-                "id" : id,
+                "id": id,
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        .then(response => response.json())
-        .then(response => {
-        if(response){
-           console.log("War accepté")
-        }
-        }) 
+            .then(response => response.json())
+            .then(response => {
+                if (response) {
+                    console.log("War accepté")
+                }
+            })
     }
 
-    async declineWar(id){
-        
+    async declineWar(id) {
+
         await fetch('http://localhost:5000/api/v1/declineWar', {
             method: "POST",
             body: JSON.stringify({
-                "id" : id,
+                "id": id,
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        .then(response => response.json())
-        .then(response => {
-        if(response){
-           console.log("War décliné")
-        }
-        }) 
+            .then(response => response.json())
+            .then(response => {
+                if (response) {
+                    console.log("War décliné")
+                }
+            })
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,45 +109,42 @@ class warAcceptOrRefuse extends React.Component {
     }
 
     // CE QUE LE COMPOSANT UPDATE
-    componentDidUpdate(prevProps, prevState){
-        if (prevState.warAcceptOrRefuse !== this.state.warAcceptOrRefuse){
-            this.setState({warAcceptOrRefuse: this.state.warAcceptOrRefuse})
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.warAcceptOrRefuse !== this.state.warAcceptOrRefuse) {
+            this.setState({ warAcceptOrRefuse: this.state.warAcceptOrRefuse })
             this.findWarIHaveToAcceptOrDecline() // API qui recharge les news data
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
-    render(){
-        return(
+
+    render() {
+        return (
             <div className="warAccept-gvg">
-            <h1 className="title"><span style={{color: '#04AA6D'}}>Accept</span><span style={{color: 'white'}}> or</span> <span style={{color: 'crimson'}}>Refuse</span></h1>
-            <div className="gvg-acceptwar-main">
-            {this.state.warAcceptOrRefuse.map((war) => { 
-                if(war.accepted === null){
-                    return <div className="gvg-acceptwar-capsule">
-                        <div>
-                            <span>
-                                <Link to="/gvg" className="btn-accept" onClick={() => this.AcceptWar(war.id)}>ACCEPT</Link>
-                            </span>
-                            
-                            <span style={{color: 'white'}}> OR </span>
-                            <span>
-                                <Link to="/gvg" className="btn-Decline" onClick={() => this.DeclineWar(war.id)}>DECLINE</Link>
-                            </span>
-                        </div>
-                        <div className="list-flexbox-leaderboard-gvg">
-                            <div key={war.id}>
-                                <span style={{color: '#ffb10f'}}>{war.guild_proposeur}</span>
-                                <span style={{color: 'white'}}> VS </span>
-                                <span style={{color: '#ffb10f'}}>{war.guild_attaquer}</span>
-                                <div style={{color: 'wheat'}}><span style={{color: 'wheat'}}>{war.heure}</span> | {war.date_war}<br/> {war.nombrejoueurs} Players </div>
+                <h1 className="title">PENDING WARS</h1>
+                <div className="gvg-acceptwar-main">
+                    {this.state.warAcceptOrRefuse.map((war) => {
+                        if (war.accepted === null) {
+                            return <div className="gvg-acceptwar-capsule">
+                                <div className="list-flexbox-leaderboard-gvg">
+                                    <div key={war.id} className="bold-txt">
+                                        <span style={{ color: '#ffb10f' }}>{war.guild_proposeur}</span>
+                                        <div style={{ color: 'white' }}>{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button className="btn">
+                                        <span><Link to="/gvg" className="btn-no-deco" onClick={() => this.AcceptWar(war.id)}>ACCEPT</Link></span>
+                                    </button>
+                                    <button className="btn decline">
+                                        <span><Link to="/gvg" className="btn-no-deco" onClick={() => this.DeclineWar(war.id)}>DECLINE</Link></span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                }})}
+                        }
+                    })}
+                </div>
             </div>
-        </div>
         )
     }
 
@@ -163,7 +160,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        
+
     }
 }
 

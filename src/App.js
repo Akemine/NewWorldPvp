@@ -29,7 +29,7 @@ function App() {
         </div>
         <div>
         <Switch>
-            <Route path="/">
+            <Route path="/leaderboard">
                 <MainContent />
             </Route>
             <Route path="/login">
@@ -41,7 +41,7 @@ function App() {
             <Route path="/howitworks">
                 <HowItWorks />
             </Route>
-            <Route path='*' exact={true} component={NotFound} />
+            <Route path='*' exact={true} component={MainContent} />
         </Switch>
         </div>
         <div className="Footer">

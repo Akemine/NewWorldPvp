@@ -1,0 +1,70 @@
+.leftMenu-main{
+    background-color: rgb(35 34 32 / 80%);
+    width: 22%;
+    border-radius: 30px;
+    height: 700px;
+}
+
+.guild_loose {
+    color: crimson;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.guild_win{
+    color: #04AA6D;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.last_wars_capsule{
+    width: 100%;
+    margin:1%;
+}
+
+.last_wars_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    overflow-y: auto;
+}
+
+.card-last-results {
+    /* Add shadows to create the "card" effect */
+    background-color: #00000054;
+    transition: 0.3s;
+    border-radius: 10px;
+    width: 69%;
+    }
+    
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+background-color: #00000094;
+transition: 0.3s;
+}
+
+/* Add some padding inside the card container */
+.container {
+padding: 2px 16px;
+}
+
+.card_declared_war{
+position: relative;
+
+display: block;
+margin: 5px auto;
+padding: 0;
+
+overflow: hidden;
+
+border-width: 0;
+outline: none;
+border-radius: 2px;
+box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+
+
+color: #ecf0f1;
+
+transition: background-color .3s;
+}
