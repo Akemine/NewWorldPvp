@@ -1,8 +1,8 @@
 .middleMenu-main{
     background-color: rgb(35 34 32 / 80%);
-    width: 45%;
-    height: 700px;
-    border-radius: 10px;
+    width: 49%;
+    height: 600px;
+    border-radius: 4px;
     display: flex;
     justify-content: inherit;
     overflow-y: auto;
@@ -15,26 +15,26 @@
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
     background: #d2d2d2;
-    border-radius: 10px;
+    border-radius: 4px;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #232220;
-    border-radius: 10px;
+    border-radius: 4px;
     transition: 2s;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #071438;
-    border-radius: 10px;
+    border-radius: 4px;
     transition: 2s;
   }
 
@@ -51,15 +51,24 @@
 }
 
 .marauders-color{
-    color: rgb(5, 143, 5);
+    color: rgb(87, 222, 87);
 }
 
 .covenant-color{
     color: #ca8c00;
 }
 
-.list-leaderboard{
+.first-ladder{
     font-weight: bold;
+}
+.second-ladder{
+    font-weight: bold;
+}
+.third-ladder{
+    font-weight: bold;
+}
+
+.list-leaderboard{
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -79,4 +88,13 @@
     flex-direction: row;
     margin:3px;
     justify-content: center;
+}
+
+.table-header{
+    color: white;
+    font-size: 15px;
+}
+
+.td-header{
+    font-size: 15px;
 }

@@ -1,20 +1,20 @@
 .leftMenu-main{
     background-color: rgb(35 34 32 / 80%);
-    width: 22%;
-    border-radius: 30px;
-    height: 700px;
+    width: 49%;
+    border-radius: 4px;
+    height: 600px;
 }
 
 .guild_loose {
     color: crimson;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .guild_win{
     color: #04AA6D;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .last_wars_capsule{
@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 600px;
+    height: 80%;
     overflow-y: auto;
 }
 
@@ -34,21 +34,11 @@
     /* Add shadows to create the "card" effect */
     background-color: #00000054;
     transition: 0.3s;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 69%;
+    padding: 1%;
     }
     
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-background-color: #00000094;
-transition: 0.3s;
-}
-
-/* Add some padding inside the card container */
-.container {
-padding: 2px 16px;
-}
-
 .card_declared_war{
 position: relative;
 
@@ -60,11 +50,29 @@ overflow: hidden;
 
 border-width: 0;
 outline: none;
-border-radius: 2px;
+border-radius: 4px;
 box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 
 
 color: #ecf0f1;
 
 transition: background-color .3s;
+}
+
+.display-fake-btn{
+    color: white !important;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.display-fake-btn.winner{
+    background-color: #04AA6D;
+}
+
+.display-fake-btn.text{
+    background-color: #c7c7c700;
+}
+
+.display-fake-btn.looser{
+    background-color: crimson;
 }

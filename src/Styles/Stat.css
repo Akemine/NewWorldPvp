@@ -1,0 +1,20 @@
+.stat-main{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(35 34 32 / 80%);
+    height: 700px;
+    border-radius: 4px;
+}
+
+
+.stat-main-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.stat-ban-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

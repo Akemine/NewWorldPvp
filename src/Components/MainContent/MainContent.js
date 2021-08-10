@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 
-import ServerChoice from './ServerChoice'
-
-import UpcomingWars from './UpcomingWars';
 import Leaderboard from './Leaderboard';
 import LastWars from './LastResults';
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
+import { Redirect } from "react-router-dom";
+
 class MainContent extends Component {
     render() {
-        if(this.props.ConnectState){
-            return (
-                <div>
-                    {/* <div className="main-search">
-                        <ServerChoice userID="test"/> 
-                    </div> */}
-                    <div className="main-content">
-                    <Leaderboard/>
-                        <LastWars/>
-                        
+        if (this.props.ConnectState) {
+            if (this.props.Banned) {
+                return (
+                    <Redirect to="/banned" />
+                )
+            }
+            else {
+                return (
+                    <div>
+                        {/* <div className="main-search">
+                                <ServerChoice userID="test"/> 
+                            </div> */}
+                        <div className="main-content">
+                            <Leaderboard />
+                            <LastWars />
+                        </div>
                     </div>
-              </div>
-            )
+                )
+            }
         }
         else {
             return (
@@ -32,28 +37,27 @@ class MainContent extends Component {
                         <ServerChoice userID="test"/> 
                     </div> */}
                     <div className="main-content">
-                    <Leaderboard/>
-                        <LastWars/>
-                        
+                        <Leaderboard />
+                        <LastWars />
                     </div>
-              </div>
+                </div>
             )
         }
-
-      }
+    }
 }
 
 const mapStateToProps = state => {
     return {
         ConnectState: state.ConnectState,
         Login: state.Login,
-        Password: state.password
+        Password: state.Password,
+        Banned: state.Banned
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        
+
     }
 }
 

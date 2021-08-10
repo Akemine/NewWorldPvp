@@ -1,8 +1,8 @@
-.howItWorks-container{
+.BannedPage-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #232220;
+    background-color: #2322209e;
     margin: 0 auto;
     width: 70%;
     border-radius: 4px;
@@ -10,10 +10,14 @@
     color: #c3c3c3;
 }
 
-.howItWorks-content{
+.BannedPage-content{
     margin: 3%;
+    font-weight: bold;
+    font-size: 20px;
 }
 
-.howItWorks-title{
+.BannedPage-title{
     font-weight: bold;
+    color: crimson;
+    font-size: 30px;
 }

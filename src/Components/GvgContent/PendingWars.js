@@ -32,12 +32,14 @@ class warAcceptOrRefuse extends React.Component {
     AcceptWar = (id) => {
         this.notify_war_accepted() // Toast de war accepted
         this.acceptWar(id) // API qui va update la war 
+        window.location.reload()
     }
 
     // FONCTION QUI EST APPELLE QUAND ON DECLINE UNE WAR
     DeclineWar = (id) => {
         this.notify_war_declined() // Toast de war declined
         this.declineWar(id) // API qui va update la war 
+        window.location.reload()
     }
     /////////////////////////////////////////////////////////////////////////////////
 
@@ -77,7 +79,7 @@ class warAcceptOrRefuse extends React.Component {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    console.log("War accepté")
+                    this.findWarIHaveToAcceptOrDecline()
                 }
             })
     }
@@ -96,7 +98,7 @@ class warAcceptOrRefuse extends React.Component {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    console.log("War décliné")
+                    this.findWarIHaveToAcceptOrDecline()
                 }
             })
     }
@@ -110,10 +112,7 @@ class warAcceptOrRefuse extends React.Component {
 
     // CE QUE LE COMPOSANT UPDATE
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.warAcceptOrRefuse !== this.state.warAcceptOrRefuse) {
-            this.setState({ warAcceptOrRefuse: this.state.warAcceptOrRefuse })
-            this.findWarIHaveToAcceptOrDecline() // API qui recharge les news data
-        }
+
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,7 +1,10 @@
 const initState = {
     ConnectState: false,
     Login: 'login_vide',
-    Password: 'password_vide'
+    Password: 'password_vide',
+    Faction: 'faction_vide',
+    Role: 'role_vide',
+    Banned: false,
 }
 
 const rootReducer = (state = initState, action) => {
@@ -10,7 +13,10 @@ const rootReducer = (state = initState, action) => {
         return {
             ConnectState: true,
             Login: action.Login, 
-            Password: action.Password
+            Password: action.Password,
+            Faction: action.Faction,
+            Role: action.Role,
+            Banned: action.Banned
         }
     }
 

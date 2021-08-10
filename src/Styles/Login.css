@@ -9,7 +9,7 @@
     background-color: rgb(35 34 32 / 80%);
     margin: 0 auto;
     width: 30%;
-    border-radius: 30px;
+    border-radius: 4px;
 }
 
 .btn-submit{
@@ -17,7 +17,7 @@
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     display: inline-block;
     padding: 6px 18px;
     vertical-align: middle;
@@ -38,7 +38,6 @@
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border-radius: 4px;
     margin-bottom: 6%;
     transition: 1s;
 }
@@ -51,7 +50,7 @@
 .label-name{
     width: 80%;
     text-align: left;
-    margin-top: 6%;
+    margin-top: 3%;
 }
 
 .label-password{
@@ -64,7 +63,7 @@
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     display: inline-block;
     padding: 6px 18px;
     vertical-align: middle;
@@ -83,7 +82,6 @@
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border-radius: 4px;
     margin-bottom: 6%;
     transition: 1s;
 }
@@ -93,7 +91,7 @@
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     display: inline-block;
     padding: 6px 18px;
     vertical-align: middle;
@@ -112,7 +110,6 @@
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border-radius: 4px;
     margin-bottom: 6%;
     transition:  1s;
     background-color: crimson;
@@ -125,4 +122,18 @@
 
 .hr-form{
     width: 50%;
+}
+
+.create-account-link{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 12px;
+}
+
+.create-account-link:hover{
+    color: #ffb10f;
+}
+
+.input-css.createaccount-css{
+    margin: 2%;
 }

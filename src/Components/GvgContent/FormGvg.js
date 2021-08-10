@@ -7,8 +7,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
-import WarAcceptOrRefuse from './PendingWars'
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -99,15 +97,6 @@ class FormGvg extends React.Component {
         if (prevState.selectedValue !== this.state.selectedValue) {
             this.changeBgColorFaction(this.state.selectedValue)
         }
-        if (prevState.warAcceptOrRefuse !== this.state.warAcceptOrRefuse) {
-            return <WarAcceptOrRefuse />
-        }
-        if (prevState.resetForm !== this.state.resetForm) {
-            this.resetWarForm()
-            this.setState({
-                resetForm: false
-            })
-        }
     }
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +107,6 @@ class FormGvg extends React.Component {
 
     // FONCTION QUI RESET LE FORMULAIRE
     resetWarForm() {
-        this.changeBgColor()
         this.setState({
             ennemy_team: '',
             hour: '10',
@@ -146,7 +134,7 @@ class FormGvg extends React.Component {
         }
         else if (e === "Marauders") {
             this.setState({
-                backgroundColor_option: 'rgb(5, 143, 5)',
+                backgroundColor_option: '#237723',
                 color_option: 'white'
             })
         }
@@ -187,37 +175,30 @@ class FormGvg extends React.Component {
     // MES HANDLES INPUT DU FORM
     handleEnnemyTeam(event) {
         this.setState({ ennemy_team: event.target.value });
-        console.log(this.state.ennemy_team)
     }
 
     handleHour(event) {
         this.setState({ hour: event.target.value });
-        console.log(this.state.hour)
     }
 
     handleAMPM(event) {
         this.setState({ AMPM: event.target.value });
-        console.log(this.state.hour)
     }
 
     handleMinutes(event) {
         this.setState({ minutes: event.target.value });
-        console.log(this.state.minutes)
     }
 
     handleDate(event) {
         this.setState({ date: event.target.value });
-        console.log(this.state.date)
     }
 
     handlePlayers(event) {
         this.setState({ players: event.target.value });
-        console.log(this.state.players)
     }
 
     handleLieu(event) {
         this.setState({ lieu: event.target.value });
-        console.log(this.state.lieu)
     }
 
     handleSelectChange(event) {
@@ -277,7 +258,7 @@ class FormGvg extends React.Component {
         else if (this.state.date.substr(6, 4) < 2021 || this.state.date.substr(6, 4) > 2022) {
             this.notify_errorDate_4()
             this.changeBgColorDate()
-            console.log("l'année ne se situe pas entre 2021 & 2024 ")
+            console.log("l'année ne se situe pas entre 2021 & 2022 ")
             event.preventDefault();
         }
         else if (this.state.players <= 0) {
@@ -293,7 +274,7 @@ class FormGvg extends React.Component {
                 body: JSON.stringify({
                     "guild_proposeur": this.props.Login,
                     "guild_attaquer": this.state.ennemy_team,
-                    "lieu": "",
+                    "lieu": this.state.lieu,
                     "heure": this.state.hour + ':' + this.state.minutes + ' ' + this.state.AMPM,
                     "date_war": this.state.date,
                     "nombreJoueurs": this.state.players
@@ -388,8 +369,8 @@ class FormGvg extends React.Component {
                     </div>
                     <div>
                         <div className="flexbox-display">
-                            <label className="label label-password bold-txt label-form-bottom">AM/PM :</label>
-                            <select style={{ backgroundColor: this.state.backgroundColor }} className="input-css-gvg-lieu firefox-margin-bottom form-m-b" value={this.state.value} onChange={this.handleAMPM}>
+                            <label className="label label-password bold-txt label-form-bottom" >AM/PM :</label>
+                            <select style={{ backgroundColor: this.state.backgroundColor, width: '100%' }} className="input-css-gvg-lieu firefox-margin-bottom form-m-b" value={this.state.value} onChange={this.handleAMPM}>
                                 <option value="AM">AM</option>
                                 <option selected value="PM">PM</option>
                             </select>

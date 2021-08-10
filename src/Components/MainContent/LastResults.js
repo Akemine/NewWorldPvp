@@ -7,43 +7,44 @@ import axios from 'axios';
 export default class LastWars extends Component {
 
   state = {
-    guilds: []
+    last_wars: []
   }
 
   async getLastWars() {
     await axios.get(`http://localhost:5000/api/v1/getLastWars`)
       .then(res => {
-        const guilds = res.data;
-        this.setState({ guilds });
+        const last_wars = res.data;
+        this.setState({ last_wars });
       })
   }
 
   componentDidMount() {
     this.getLastWars()
-
-    
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.guilds !== this.state.guilds) {
+    if (prevState.last_wars !== this.state.last_wars) {
       // this.getLastWars() // SE SPAM A FOND, VOIR POURQUOI
-      console.log(this.state.guilds)
     }
   }
 
   render() {
     return (
       <div className="leftMenu-main">
-        <p className="title">LAST RESULTS</p>
+        <p className="title">LAST 10 RESULTS</p>
         <div className="last_wars_container">
-          {this.state.guilds.map(guild =>
-            <div className="last_wars_capsule card-last-results" key={guild.id}>
+          {this.state.last_wars.map(last_war =>
+            <div className="last_wars_capsule card-last-results" key={last_war.id}>
               <div className="container">
-                <span className="guild_win">(1){guild.win_guild} Wins (+105) </span>
-                <br/>
-                <span className="span-white"> against </span>
-                <br/>
-                <span className="guild_loose">(2){guild.loose_guild } (-85)</span>
+                <div className="display-column">
+                  <span style={{color: 'white'}} className="bold-txt">WAR ID : {last_war.id} - {last_war.date}</span>
+                  <div className="display-row display-result">
+                    <span className="guild_win display-fake-btn winner">{last_war.win_guild} Wins (+{last_war.win_cote})</span>
+                    <span className="span-white display-fake-btn text" style={{fontSize: '18px'}}> AGAINST </span>
+                    <span className="guild_loose display-fake-btn looser">{last_war.loose_guild } ({last_war.loose_cote})</span>
+                  </div>
+                  <span className="bold-txt span-white">Team Size {last_war.nombrejoueurs}</span>
+                </div>
               </div>
             </div>
           )}

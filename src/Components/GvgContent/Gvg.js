@@ -15,7 +15,8 @@ import NotFound from '../NotFound'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import UpcomingWars from '../MainContent/UpcomingWars';
+
+import { Redirect } from "react-router-dom";
 
 
 class Gvg extends React.Component {
@@ -28,17 +29,21 @@ class Gvg extends React.Component {
             return <NotFound />
         }
         else {
-            return (
-                <div className="main">
-                <div className="main-gvg">
-                    <ToastContainer hideProgressBar={false} autoClose={3000} position="top-center" />
-                    
-                    <FormGvg />
-                </div>
-                    <DeclaredWars />
-                    <PendingWars />
-                </div>
-            )
+            if (this.props.Banned){
+                return <Redirect to="/banned" />
+            }
+            else {
+                return (
+                    <div className="main">
+                    <div className="main-gvg">
+                        <ToastContainer hideProgressBar={false} autoClose={3000} position="top-center" />
+                        <FormGvg />
+                    </div>
+                        <DeclaredWars />
+                        <PendingWars />
+                    </div>
+                )
+            }
         }
     }
 }
@@ -47,7 +52,7 @@ const mapStateToProps = state => {
     return {
         ConnectState: state.ConnectState,
         Login: state.Login,
-        Password: state.password
+        Banned: state.Banned
     }
 }
 

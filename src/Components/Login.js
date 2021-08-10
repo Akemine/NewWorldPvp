@@ -2,17 +2,20 @@ import '../Styles/Login.css'
 
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
-import React, { Component } from 'react';
-import MainContent from './MainContent/MainContent'
+import React from 'react';
 
+import { Link, Redirect } from "react-router-dom";
 let login = ""
 let password = ""
+let faction = ""
+let role = ""
+let banned = ""
 
 class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {isConnected: false, login: '', password: '', badConnection: false};
+        this.state = {isConnected: false, login: '', password: '', badConnection: false, faction: '', role: ''};
     
         this.handlePseudo = this.handlePseudo.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
@@ -50,9 +53,30 @@ class Login extends React.Component {
         .then(response => response.json())
         .then(response => {
           if(response){
-            login = this.state.login
-            password = this.state.password
-            this.props.Logged()
+            fetch('http://localhost:5000/api/v1/getAccountData', {
+              method: "POST",
+              body: JSON.stringify({
+                "login" : this.state.login,
+                "password": this.state.password
+              }),
+              headers: {
+                "Content-Type": "application/json"
+            }
+            })
+            .then(response => response.json())
+            .then(response => {
+              if(response){
+                login = this.state.login
+                password = this.state.password
+                faction = response[0].faction
+                role = response[0].role
+                banned = response[0].banned
+                this.props.Logged()
+              }
+              else{
+                this.setState({badConnection: true, backgroundColor: 'crimson'})
+              }
+            })
           }
           else{
             this.setState({badConnection: true, backgroundColor: 'crimson'})
@@ -62,15 +86,16 @@ class Login extends React.Component {
       }
 
       componentDidUpdate(prevProps, prevState){
-        if (prevProps.Login !== this.props.Login)
-        {        
-          this.props.history.push('/leaderboard');
-        }
+
       }
 
     render() {
       if (this.props.ConnectState){
-        return <MainContent />
+        if(this.props.Banned){
+          return <Redirect to="/banned"/>
+        } else {
+          return <Redirect to="/leaderboard"/>
+        }
       }
       else if (this.state.badConnection){
         return (
@@ -84,7 +109,8 @@ class Login extends React.Component {
                   <label className="label label-password" >Password :</label>
                   <input style={{backgroundColor: this.state.backgroundColor}} placeholder="Type your password" className="input-css-error" type="password" value={this.state.value} onChange={this.handlePassword} onFocus={ () => this.changeBgColor() } />
                   <br/>
-                  <input className="btn-submit" type="submit" value="Connection to my guild" onClick={this.handleSubmit}/>
+                  <input className="btn-submit" type="submit" value="Connection to my guild" onClick={this.handleSubmit} style={{marginBottom: '0%'}}/>
+                  <Link to="createaccount" className="btn-no-deco create-account-link">I want to create my guild !</Link>
               </form>
         </div>
           )
@@ -101,8 +127,10 @@ class Login extends React.Component {
                 <label className="label label-password" >Password :</label>
                 <input placeholder="Type your password" className="input-css" type="password" value={this.state.value} onChange={this.handlePassword} />
                 <br/>
-                <input className="btn-submit" type="submit" value="Connection to my guild" onClick={this.handleSubmit}/>
+                <input className="btn-submit" type="submit" value="Connect me to my guild !" onClick={this.handleSubmit} style={{marginBottom: '0%'}} />
+                <Link to="createaccount" className="btn-no-deco create-account-link">I want to create my guild !</Link>
             </form>
+            
       </div>
         )
       }
@@ -112,15 +140,18 @@ class Login extends React.Component {
 const mapStateToProps = state => {
   return {
     ConnectState: state.ConnectState,
-    Login: state.Login,
-    Password: state.password
+    Login: state.Login,   
+    Password: state.Password,
+    Faction: state.Faction,
+    Role: state.Role,
+    Banned: state.Banned
   }
 }
 
 const mapDispatchToProps = dispatch => {
 return {
   Logged: isConnected => {
-    dispatch({type: "USER_CONNECTED", ConnectState: true, Login: login, Password: password})
+    dispatch({type: "USER_CONNECTED", ConnectState: true, Login: login, Faction: faction, Password: password, Role: role, Banned: banned})
    },
 
   Unlogged: isConnected => {

@@ -1,13 +1,13 @@
 .rightMenu-main{
     background-color: rgb(35 34 32 / 80%);
     width: 22%;
-    border-radius: 30px;
+    border-radius: 4px;
 }
 
 .gvg-admin-capsule{
     padding: 1%;
     background-color: #ffb10f0a;
-    border-radius: 30px;
+    border-radius: 4px;
     width: 85%;
     margin-bottom: 3%;
 }
