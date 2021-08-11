@@ -158,8 +158,6 @@ class Leaderboard extends Component {
     }
 
     render() {
-        console.log(this.props.ConnectState)
-        console.log(this.props.Login)
         if(this.props.ServerChoosed === "all"){
             return (
                 <div className="middleMenu-main scroller">

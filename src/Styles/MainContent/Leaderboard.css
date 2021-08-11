@@ -1,42 +1,78 @@
-.middleMenu-main{
-    background-color: rgb(35 34 32 / 80%);
-    width: 49%;
-    height: 600px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: inherit;
-    overflow-y: auto;
+
+/* ECRAN 4K SA MERE (2560px) */
+@media all and (min-width: 1921px) and (max-width: 2560px){
+    .middleMenu-main{
+        background-color: rgb(35 34 32 / 70%);
+        width: 49%;
+        height: 600px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: inherit;
+        overflow-y: auto;
+    }
+
+    .middleMenu-leaderboard{
+        width: 80%;
+    }
 }
 
-.middleMenu-leaderboard{
-    width: 80%;
+
+/* ECRAN GRANDE TAILLE (1920px) */
+@media all and (min-width: 1441px) and (max-width: 1920px){
+    .middleMenu-main{
+        background-color: rgb(35 34 32 / 70%);
+        width: 49%;
+        height: 600px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: inherit;
+        overflow-y: auto;
+    }
+
+    .middleMenu-leaderboard{
+        width: 80%;
+    }
 }
 
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 4px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #d2d2d2;
-    border-radius: 4px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #232220;
-    border-radius: 4px;
-    transition: 2s;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #071438;
-    border-radius: 4px;
-    transition: 2s;
-  }
+/* ECRAN MOYENNE TAILLE (1440px) */
+@media all and (min-width: 1024px) and (max-width: 1440px){
+    .middleMenu-main{
+        background-color: blue;
+        width: 49%;
+        height: 600px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: inherit;
+        overflow-y: auto;
+    }
+
+    .middleMenu-leaderboard{
+        width: 80%;
+    }
+}
+
+/* ECRAN PETIT TAILLE (TELEPHONE) (1000px) */
+@media all and (max-width: 1023px){
+    .middleMenu-main{
+        background-color: green;
+        width: 95%;
+        height: 600px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: inherit;
+        overflow-y: auto;
+        margin-bottom: 15px;
+        margin-left: 28px;
+    }
+
+    .middleMenu-leaderboard{
+        width: 80%;
+    }
+}
+
+
+
+
 
 .list-guild{
     text-align: left;
@@ -98,3 +134,5 @@
 .td-header{
     font-size: 15px;
 }
+
+

@@ -1,8 +1,66 @@
+
+/* ECRAN 4K SA MERE (2560px) */
+@media all and (min-width: 1921px) and (max-width: 2560px){
 .leftMenu-main{
     background-color: rgb(35 34 32 / 80%);
     width: 49%;
     border-radius: 4px;
     height: 600px;
+}
+
+/* Contenu du middle */
+.main-content{
+    display: flex;
+    justify-content: space-around;
+}
+}
+
+
+/* ECRAN GRANDE TAILLE (1920px) */
+@media all and (min-width: 1441px) and (max-width: 1920px){
+.leftMenu-main{
+    background-color: rgb(35 34 32 / 80%);
+    width: 49%;
+    border-radius: 4px;
+    height: 600px;
+}
+/* Contenu du middle */
+.main-content{
+    display: flex;
+    justify-content: space-around;
+}
+}
+
+/* ECRAN MOYENNE TAILLE (1440px) */
+@media all and (min-width: 1024px) and (max-width: 1440px){
+.leftMenu-main{
+    background-color: rgb(35 34 32 / 80%);
+    width: 49%;
+    border-radius: 4px;
+    height: 600px;
+}
+/* Contenu du middle */
+.main-content{
+    display: flex;
+    justify-content: space-around;
+}
+}
+
+/* ECRAN PETIT TAILLE (TELEPHONE) (1000px) */
+@media all and (min-width: 480px) and (max-width: 1023px){
+.leftMenu-main{
+    background-color: rgb(35 34 32 / 80%);
+    width: 80%;
+    border-radius: 4px;
+    height: 600px;
+}
+/* Contenu du middle */
+.main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 }
 
 .guild_loose {

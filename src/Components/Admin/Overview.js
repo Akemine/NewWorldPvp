@@ -26,7 +26,8 @@ class Overview extends Component {
     state = {
         guilds: [],
         banned_guilds: [{ guildname: 'THERE IS NO DATA' }],
-        last_wars: []
+        last_wars: [],
+        guilds_no_filtered: []
     }
 
     async getAllGuild() {
@@ -65,6 +66,7 @@ class Overview extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+
         if (prevState.last_wars !== this.state.last_wars) {
             this.setState({ last_wars: this.state.last_wars });
         }
@@ -76,41 +78,67 @@ class Overview extends Component {
         }
     }
 
-    async banGuild(idGuild) {
+    // BAN
+    // BDD : 
+    // passe banned à true
+    // FILTER : 
+    // crée un objet json qui contient banned à true ainsi que d'autres données
+    // delete la ligne de guilds
+    // ajoute la ligne à banned_guilds
+    // mets à jour l'état banned_guilds
+    async banGuild(id, i, guild_name, warn) {
         await fetch('http://localhost:5000/api/v1/banGuild', {
             method: "POST",
             body: JSON.stringify({
-                "idGuild": idGuild,
+                "idGuild": id,
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-            .then(response => {
-                this.getGuilds()
-            })
+        const myObj = { id, guild_name, banned: true, warn }
+        this.state.guilds.splice(i, 1)
+        this.state.banned_guilds.push(myObj)
+        this.setState({ banned_guilds: this.state.banned_guilds })
     }
 
-    async unBanGuild(idGuild) {
+
+    // UNBAN
+    // BDD : 
+    // passe banned à false
+    // passe warn à 0
+    // FILTER : 
+    // crée un objet json qui contient banned à false & warn à 0
+    // delete la ligne de banned_guilds
+    // ajoute la ligne à guilds
+    // mets à jour l'état guilds
+    async unBanGuild(id, i, guild_name, warn) {
         await fetch('http://localhost:5000/api/v1/unBanGuild', {
             method: "POST",
             body: JSON.stringify({
-                "idGuild": idGuild,
+                "idGuild": id,
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-            .then(response => {
-                this.getGuilds()
-            })
+        const myObj = { id, guild_name, banned: false, warn: 0 }
+        this.state.banned_guilds.splice(i, 1)
+        this.state.guilds.push(myObj)
+        this.setState({ guilds: this.state.guilds })
     }
 
-    async warnGuild(idGuild, warnNumber) {
+    // WARN
+    // BDD : 
+    // incrémente warn
+    // FILTER : 
+    // incrémente warn
+    // mets à jour l'état guilds
+    async warnGuild(id, i, guildname, warnNumber) {
         await fetch('http://localhost:5000/api/v1/warnGuild', {
             method: "POST",
             body: JSON.stringify({
-                "idGuild": idGuild,
+                "idGuild": id,
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -118,30 +146,43 @@ class Overview extends Component {
         })
             .then(response => {
                 if (warnNumber + 1 >= 3) {
-                    this.banGuild(idGuild)
+                    this.banGuild(id, i, guildname, warnNumber)
                 }
-                this.getAllGuild()
             })
+        this.state.guilds[i].warn = this.state.guilds[i].warn + 1
+        this.setState({ guilds: this.state.guilds })
     }
 
-    async unWarnGuild(idGuild, warnNumber) {
+    // WARN
+    // BDD : 
+    // décrémente warn
+    // FILTER : 
+    // décrémente warn
+    // mets à jour l'état guilds
+    async unWarnGuild(id, i, warnNumber) {
         if (warnNumber > 0) {
+            this.state.guilds[i].warn = this.state.guilds[i].warn - 1
+            this.setState({ guilds: this.state.guilds })
             await fetch('http://localhost:5000/api/v1/unWarnGuild', {
                 method: "POST",
                 body: JSON.stringify({
-                    "idGuild": idGuild,
+                    "idGuild": id,
                 }),
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
-            .then(response => {
-                this.getAllGuild()
-            })
         }
     }
 
-    async cancelMatch(idWar){
+    // CANCEL
+    // BDD : 
+    // delete de last wars
+    // update les cotes pour rollback
+    // FILTER : 
+    // delete de last wars
+    // mets à jour last wars
+    async cancelMatch(idWar, i) {
         await fetch('http://localhost:5000/api/v1/cancelMatch', {
             method: "POST",
             body: JSON.stringify({
@@ -151,12 +192,20 @@ class Overview extends Component {
                 "Content-Type": "application/json"
             }
         })
-        .then(response => {
-            this.getAllLastWars()
-        })
+
+        this.state.last_wars.splice(i, 1)
+        this.setState({last_wars: this.state.last_wars})
     }
 
-    async replayMatch(idWar){
+    // REPLAY
+    // BDD : 
+    // update war_proposed en archive false pour le réafficher dans le panneau de gvg des guildes en question
+    // delete de last wars
+    // update les cotes pour rollback
+    // FILTER : 
+    // delete de last wars
+    // mets à jour last wars
+    async replayMatch(idWar, i) {
         await fetch('http://localhost:5000/api/v1/replayMatch', {
             method: "POST",
             body: JSON.stringify({
@@ -166,10 +215,11 @@ class Overview extends Component {
                 "Content-Type": "application/json"
             }
         })
-        .then(response => {
-            this.getAllLastWars()
-        })
+        this.state.last_wars.splice(i, 1)
+        this.setState({last_wars: this.state.last_wars})
     }
+
+
 
     render() {
         if (this.props.Role === "admin") {
@@ -190,21 +240,22 @@ class Overview extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.state.guilds.map(guild =>
-                                                <tr>
-                                                    <td className="table-header">{guild.guild_name}</td>
+
+                                            {this.state.guilds.filter(guild => !guild.banned).map(function (guildFiltered, i) {
+                                                return <tr>
+                                                    <td className="table-header">{guildFiltered.guild_name}</td>
                                                     <td className="table-header">
-                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.banGuild(guild.id)}>
+                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.banGuild(guildFiltered.id, i, guildFiltered.guild_name, guildFiltered.warn)}>
                                                             <span style={{ color: 'crimson', fontWeight: 'bold' }}>BAN</span>
                                                         </Link>
                                                         <span> - </span>
-                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.warnGuild(guild.id, guild.warn)}>
-                                                            <span style={{ color: 'orange', fontWeight: 'bold' }}>WARN </span></Link> ({guild.warn})
-                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.unWarnGuild(guild.id, guild.warn)}>
+                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.warnGuild(guildFiltered.id, i, guildFiltered.guild_name, guildFiltered.warn)}>
+                                                            <span style={{ color: 'orange', fontWeight: 'bold' }}>WARN </span></Link> ({guildFiltered.warn})
+                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.unWarnGuild(guildFiltered.id, i, guildFiltered.warn)}>
                                                             <span style={{ color: '#57de57', fontWeight: 'bold' }}> UNWARN</span></Link>
                                                     </td>
                                                 </tr>
-                                            )}
+                                            }, this)}
                                         </tbody>
                                     </table>
                                 </div>
@@ -220,16 +271,16 @@ class Overview extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.state.banned_guilds.map(banned_guild =>
-                                                <tr>
-                                                    <td className="table-header">{banned_guild.guild_name}</td>
+                                            {this.state.banned_guilds.filter(guild => guild.banned).map(function (guildFiltered, i) {
+                                                return <tr>
+                                                    <td className="table-header">{guildFiltered.guild_name}</td>
                                                     <td className="table-header">
-                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.unBanGuild(banned_guild.id)}>
+                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.unBanGuild(guildFiltered.id, i, guildFiltered.guild_name, guildFiltered.warn)}>
                                                             <span style={{ color: 'rgb(87, 222, 87)', fontWeight: 'bold' }}>UNBAN</span>
                                                         </Link>
                                                     </td>
                                                 </tr>
-                                            )}
+                                            }, this)}
                                         </tbody>
                                     </table>
                                 </div>
@@ -248,22 +299,22 @@ class Overview extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.state.last_wars.map(war =>
-                                                <tr>
-                                                    <td className="table-header">{war.id}</td>
-                                                    <td className="table-header">{war.win_guild}</td>
-                                                    <td className="table-header">{war.loose_guild}</td>
+                                            {this.state.last_wars.filter(war => war).map(function (warFiltered, i) {
+                                                return <tr>
+                                                    <td className="table-header">{warFiltered.id}</td>
+                                                    <td className="table-header">{warFiltered.win_guild}</td>
+                                                    <td className="table-header">{warFiltered.loose_guild}</td>
                                                     <td className="table-header">
-                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.cancelMatch(war.id)}>
+                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.cancelMatch(warFiltered.id, i)}>
                                                             <span style={{ color: 'crimson', fontWeight: 'bold' }}>CANCEL</span>
                                                         </Link>
                                                         <span> - </span>
-                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.replayMatch(war.id)}>
+                                                        <Link to="/overview" className="connection btnNavbar" onClick={() => this.replayMatch(warFiltered.id, i)}>
                                                             <span style={{ color: 'orange', fontWeight: 'bold' }}>REPLAY</span>
                                                         </Link>
                                                     </td>
                                                 </tr>
-                                            )}
+                                            }, this)}
                                         </tbody>
                                     </table>
                                 </div>
@@ -275,7 +326,7 @@ class Overview extends Component {
             )
         }
         else {
-            return <Redirect to="/leaderboard" />
+            return <Link to="/leaderboard" />
         }
 
     }
@@ -284,14 +335,14 @@ class Overview extends Component {
 
 const mapStateToProps = state => {
     return {
-      ConnectState: state.loginReducer.ConnectState,
-      Login: state.loginReducer.Login,   
-      Password: state.loginReducer.Password,
-      Faction: state.loginReducer.Faction,
-      Role: state.loginReducer.Role,
-      Banned: state.loginReducer.Banned
+        ConnectState: state.loginReducer.ConnectState,
+        Login: state.loginReducer.Login,
+        Password: state.loginReducer.Password,
+        Faction: state.loginReducer.Faction,
+        Role: state.loginReducer.Role,
+        Banned: state.loginReducer.Banned
     }
-  }
+}
 
 const mapDispatchToProps = dispatch => {
     return {

@@ -21,6 +21,10 @@ const initStateServerChoose = {
     ServerChoosed: 'all'
 }
 
+const initStateAdminOverview = {
+    ServerChoosed: 'all'
+}
+
 const loginReducer = (state = initStateLogin, action) => {
 
     if(action.type === "USER_CONNECTED"){
