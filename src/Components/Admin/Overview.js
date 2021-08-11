@@ -284,24 +284,18 @@ class Overview extends Component {
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState,
-        Login: state.Login,
-        Password: state.password,
-        Faction: state.Faction,
-        Role: state.Role,
-        Banned: state.Banned
+      ConnectState: state.loginReducer.ConnectState,
+      Login: state.loginReducer.Login,   
+      Password: state.loginReducer.Password,
+      Faction: state.loginReducer.Faction,
+      Role: state.loginReducer.Role,
+      Banned: state.loginReducer.Banned
     }
-}
+  }
 
 const mapDispatchToProps = dispatch => {
     return {
-        Logged: isConnected => {
-            dispatch({ type: "USER_CONNECTED", ConnectState: true })
-        },
 
-        Unlogged: isConnected => {
-            dispatch({ type: "USER_DISCONNECTED", ConnectState: false })
-        }
     }
 }
 

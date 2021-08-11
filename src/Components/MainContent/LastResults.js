@@ -1,4 +1,4 @@
-import '../../Styles/LastResults.css'
+import '../../Styles/MainContent/LastResults.css'
 
 import React, { Component } from 'react';
 
@@ -39,9 +39,9 @@ export default class LastWars extends Component {
                 <div className="display-column">
                   <span style={{color: 'white'}} className="bold-txt">WAR ID : {last_war.id} - {last_war.date}</span>
                   <div className="display-row display-result">
-                    <span className="guild_win display-fake-btn winner">{last_war.win_guild} Wins (+{last_war.win_cote})</span>
-                    <span className="span-white display-fake-btn text" style={{fontSize: '18px'}}> AGAINST </span>
-                    <span className="guild_loose display-fake-btn looser">{last_war.loose_guild } ({last_war.loose_cote})</span>
+                    <span className="guild_win display-fake-btn winner" style={{width: '40%'}}>{last_war.win_guild} Wins (+{last_war.win_cote})</span>
+
+                    <span className="guild_loose display-fake-btn looser" style={{width: '40%'}}>{last_war.loose_guild } ({last_war.loose_cote})</span>
                   </div>
                   <span className="bold-txt span-white">Team Size {last_war.nombrejoueurs}</span>
                 </div>

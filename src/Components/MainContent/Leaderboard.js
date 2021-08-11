@@ -1,4 +1,4 @@
-import '../../Styles/Leaderboard.css'
+import '../../Styles/MainContent/Leaderboard.css'
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const leaderboard = 'LEADERBOARD'
 
+
 class Leaderboard extends Component {
 
 
@@ -16,7 +17,8 @@ class Leaderboard extends Component {
         firstColor: 'white',
         secondColor: 'white',
         thirdColor: 'white',
-        ownColor: 'white'
+        ownColor: 'white',
+        serverchoosed_default: 'all'
     }
 
     async getLeaderboard() {
@@ -33,12 +35,17 @@ class Leaderboard extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-
+        if(prevProps.Login !== this.props.Login)
+        {
+            // this.getLeaderboard()
+            // this.ownColor()
+        }
+        
+        
     }
 
     // Change l'input en bg white si crimson
     changeBgColor(guildFaction) {
-
         if (guildFaction === "Marauders" && this.state.firstColor !== 'rgb(87, 222, 87)') {
             this.setState({ firstColor: 'rgb(87, 222, 87)' })
         }
@@ -50,7 +57,7 @@ class Leaderboard extends Component {
         }
     }
 
-    displayFirstSecondAndThirdOfLadder(guildRank, guildName, guildGM, guildCote, guildFaction) {
+    displayFirstSecondAndThirdOfLadder(guildRank, guildName, guildGM, guildCote, guildFaction, guildServer) {
         // this.changeBgColor(guildFaction)
         if(this.props.Login === guildName){
             if (guildRank === 1) {
@@ -60,6 +67,7 @@ class Leaderboard extends Component {
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildCote}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildGM}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildFaction}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildServer}</td>
                 </tr>
             }
             else if (guildRank === 2) {
@@ -69,6 +77,7 @@ class Leaderboard extends Component {
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildCote}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildGM}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildFaction}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildServer}</td>
                 </tr>
             }
             else if (guildRank === 3) {
@@ -78,6 +87,7 @@ class Leaderboard extends Component {
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildCote}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildGM}</td>
                     <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildFaction}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildServer}</td>
                 </tr>
             }
         }
@@ -88,6 +98,7 @@ class Leaderboard extends Component {
                 <td className="table-header first-ladder">{guildCote}</td>
                 <td className="table-header first-ladder">{guildGM}</td>
                 <td className="table-header first-ladder">{guildFaction}</td>
+                <td className="table-heade first-ladder">{guildServer}</td>
             </tr>
         }
         else if (guildRank === 2) {
@@ -97,6 +108,7 @@ class Leaderboard extends Component {
                 <td className="table-header first-ladder">{guildCote}</td>
                 <td className="table-header first-ladder">{guildGM}</td>
                 <td className="table-header first-ladder">{guildFaction}</td>
+                <td className="table-heade first-ladder">{guildServer}</td>
             </tr>
         }
         else if (guildRank === 3) {
@@ -106,6 +118,7 @@ class Leaderboard extends Component {
                 <td className="table-header first-ladder">{guildCote}</td>
                 <td className="table-header first-ladder">{guildGM}</td>
                 <td className="table-heade first-ladder">{guildFaction}</td>
+                <td className="table-heade first-ladder">{guildServer}</td>
             </tr>
         }
     }
@@ -120,7 +133,7 @@ class Leaderboard extends Component {
             this.setState({ownColor: '#fba200'})
         }
     }
-    displayLadder(guildRank, guildName, guildGM, guildCote, guildFaction) {
+    displayLadder(guildRank, guildName, guildGM, guildCote, guildFaction, guildServer) {
         if(this.props.Login === guildName){
         return <tr>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildRank}</td>
@@ -128,6 +141,7 @@ class Leaderboard extends Component {
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildCote}</td>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildGM}</td>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildFaction}</td>
+            <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildServer}</td>
         </tr> 
 
         } else {
@@ -137,54 +151,96 @@ class Leaderboard extends Component {
             <td className="table-header">{guildCote}</td>
             <td className="table-header">{guildGM}</td>
             <td className="table-header">{guildFaction}</td>
+            <td className="table-header">{guildServer}</td>
         </tr>
         }
 
     }
 
     render() {
-        return (
-            <div className="middleMenu-main scroller">
-                <div className="middleMenu-leaderboard">
-                    <p className="title" fixed>{leaderboard} </p>
-                    <div className="list-leaderboard">
-                        <table style={{ width: '100%' }}>
-                            <thead>
-                                <tr>
-                                    <th className="table-header">RANK</th>
-                                    <th className="table-header">GUILD</th>
-                                    <th className="table-header">COTE</th>
-                                    <th className="table-header">GM</th>
-                                    <th className="table-header">FACTION</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.guilds.map(function (guild, i) {
-                                    if (i + 1 === 1 || i + 1 === 2 || i + 1 === 3) {
-                                        return this.displayFirstSecondAndThirdOfLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction)
-                                    }
-                                    else {
-                                        return this.displayLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction)
-                                    }
-                                }, this)
+        console.log(this.props.ConnectState)
+        console.log(this.props.Login)
+        if(this.props.ServerChoosed === "all"){
+            return (
+                <div className="middleMenu-main scroller">
+                    <div className="middleMenu-leaderboard">
+                        <p className="title" fixed>{leaderboard} </p>
+                        <div className="list-leaderboard">
+                            <table style={{ width: '100%' }}>
+                                <thead>
+                                    <tr>
+                                        <th className="table-header">RANK</th>
+                                        <th className="table-header">GUILD</th>
+                                        <th className="table-header">COTE</th>
+                                        <th className="table-header">GM</th>
+                                        <th className="table-header">FACTION</th>
+                                        <th className="table-header">SERVER</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {this.state.guilds.map(function(guild, i) {
+                                        if (i + 1 === 1 || i + 1 === 2 || i + 1 === 3) {
+                                            return this.displayFirstSecondAndThirdOfLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction, guild.server)
+                                        }
+                                        else {
+                                            return this.displayLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction, guild.server)
+                                        }
+                                    }, this)
                                 }
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else{
+            return (
+                <div className="middleMenu-main scroller">
+                    <div className="middleMenu-leaderboard">
+                        <p className="title" fixed>{leaderboard} </p>
+                        <div className="list-leaderboard">
+                            <table style={{ width: '100%' }}>
+                                <thead>
+                                    <tr>
+                                        <th className="table-header">RANK</th>
+                                        <th className="table-header">GUILD</th>
+                                        <th className="table-header">COTE</th>
+                                        <th className="table-header">GM</th>
+                                        <th className="table-header">FACTION</th>
+                                        <th className="table-header">SERVER</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {this.state.guilds.filter(guild => guild.server === this.props.ServerChoosed).map(function(guildFiltered, i) {
+                                        if (i + 1 === 1 || i + 1 === 2 || i + 1 === 3) {
+                                            return this.displayFirstSecondAndThirdOfLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server)
+                                        }
+                                        else {
+                                            return this.displayLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server)
+                                        }
+                                    }, this)
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState,
-        Login: state.Login,
-        Password: state.Password,
-        Faction: state.Faction
+      ConnectState: state.loginReducer.ConnectState,
+      Login: state.loginReducer.Login,   
+      Password: state.loginReducer.Password,
+      Faction: state.loginReducer.Faction,
+      Role: state.loginReducer.Role,
+      Banned: state.loginReducer.Banned,
+      ServerChoosed: state.serverChoiceReducer.ServerChoosed
     }
-}
+  }
 
 const mapDispatchToProps = dispatch => {
     return {

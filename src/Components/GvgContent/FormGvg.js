@@ -1,5 +1,5 @@
-import '../../Styles/Gvg.css'
-import '../../Styles/Login.css'
+import '../../Styles/GvgContent/Gvg.css'
+import '../../Styles/Login/Login.css'
 
 import React from 'react';
 
@@ -389,12 +389,14 @@ class FormGvg extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState,
-        Login: state.Login,
-        Password: state.password
+      ConnectState: state.loginReducer.ConnectState,
+      Login: state.loginReducer.Login,   
+      Password: state.loginReducer.Password,
+      Faction: state.loginReducer.Faction,
+      Role: state.loginReducer.Role,
+      Banned: state.loginReducer.Banned
     }
-}
-
+  }
 const mapDispatchToProps = dispatch => {
     return {
 

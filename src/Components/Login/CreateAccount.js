@@ -1,9 +1,9 @@
-import '../Styles/Login.css'
+import '../../Styles/Login/Login.css'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import React from 'react';
-import MainContent from './MainContent/MainContent'
+import MainContent from '../MainContent/MainContent'
 
 
 
@@ -154,9 +154,9 @@ class CreateAccount extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState,
-        Login: state.Login,
-        Password: state.password
+        ConnectState: state.loginReducer.ConnectState,
+        Login: state.loginReducer.Login,
+        Password: state.loginReducer.Password
     }
 }
 
@@ -164,10 +164,6 @@ const mapDispatchToProps = dispatch => {
     return {
         Logged: isConnected => {
             dispatch({ type: "USER_CONNECTED", ConnectState: true, Login: guild_name, Password: password })
-        },
-
-        Unlogged: isConnected => {
-            dispatch({ type: "USER_DISCONNECTED", ConnectState: false })
         }
     }
 }

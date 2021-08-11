@@ -1,4 +1,4 @@
-import '../Styles/BannedPage.css'
+import '../../Styles/BannedPage/BannedPage.css'
 
 import React, { Component } from 'react';
 

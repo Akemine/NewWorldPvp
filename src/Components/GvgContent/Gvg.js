@@ -1,5 +1,5 @@
-import '../../Styles/Gvg.css'
-import '../../Styles/Login.css'
+import '../../Styles/GvgContent/Gvg.css'
+import '../../Styles/Login/Login.css'
 
 import React from 'react';
 
@@ -7,11 +7,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
-import Login from '../Login';
+import Login from '../Login/Login';
 import PendingWars from './PendingWars'
 import DeclaredWars from './DeclaredWars'
 import FormGvg from './FormGvg';
-import NotFound from '../NotFound'
+import NotFound from '../Partials/NotFound'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,8 +20,10 @@ import { Redirect } from "react-router-dom";
 
 
 class Gvg extends React.Component {
-    
+
     render() {
+        console.log(this.props.ConnectState)
+        console.log(this.props.Login)
         if (!this.props.ConnectState) {
             return <Login />
         }
@@ -33,6 +35,7 @@ class Gvg extends React.Component {
                 return <Redirect to="/banned" />
             }
             else {
+                console.log(this.props.ConnectState)
                 return (
                     <div className="main">
                     <div className="main-gvg">
@@ -50,15 +53,17 @@ class Gvg extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState,
-        Login: state.Login,
-        Banned: state.Banned
+      ConnectState: state.loginReducer.ConnectState,
+      Login: state.loginReducer.Login,   
+      Password: state.loginReducer.Password,
+      Faction: state.loginReducer.Faction,
+      Role: state.loginReducer.Role,
+      Banned: state.loginReducer.Banned
     }
-}
+  }
 
 const mapDispatchToProps = dispatch => {
     return {
-        
     }
 }
 

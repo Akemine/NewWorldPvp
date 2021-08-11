@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
 import { Redirect } from "react-router-dom";
+import ServerChoice from './ServerChoice';
 
 class MainContent extends Component {
     render() {
@@ -19,9 +20,9 @@ class MainContent extends Component {
             else {
                 return (
                     <div>
-                        {/* <div className="main-search">
+                        <div className="main-search">
                                 <ServerChoice userID="test"/> 
-                            </div> */}
+                        </div>
                         <div className="main-content">
                             <Leaderboard />
                             <LastWars />
@@ -33,9 +34,9 @@ class MainContent extends Component {
         else {
             return (
                 <div>
-                    {/* <div className="main-search">
+                    <div className="main-search">
                         <ServerChoice userID="test"/> 
-                    </div> */}
+                    </div>
                     <div className="main-content">
                         <Leaderboard />
                         <LastWars />
@@ -48,12 +49,14 @@ class MainContent extends Component {
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState,
-        Login: state.Login,
-        Password: state.Password,
-        Banned: state.Banned
+      ConnectState: state.loginReducer.ConnectState,
+      Login: state.loginReducer.Login,   
+      Password: state.loginReducer.Password,
+      Faction: state.loginReducer.Faction,
+      Role: state.loginReducer.Role,
+      Banned: state.loginReducer.Banned
     }
-}
+  }
 
 const mapDispatchToProps = dispatch => {
     return {

@@ -1,4 +1,4 @@
-import '../Styles/NotFound.css'
+import '../../Styles/Partials/NotFound.css'
 
 import React, { Component } from 'react';
 

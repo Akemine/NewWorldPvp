@@ -1,4 +1,4 @@
-import '../Styles/HowItWorks.css'
+import '../../Styles/HowItWorks/HowItWorks.css'
 
 import React, { Component } from 'react';
 

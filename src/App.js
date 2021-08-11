@@ -1,8 +1,6 @@
-
 import './App.css';
 
-import Navbar from './Components/Navbar';
-import Footer from './Components/Footer';
+
 
 import {
   BrowserRouter as Router,
@@ -10,14 +8,16 @@ import {
   Route
 } from "react-router-dom";
 
+import Navbar from './Components/Partials/Navbar';
+import Footer from './Components/Partials/Footer';
 import MainContent from './Components/MainContent/MainContent';
-import Login from './Components/Login';
-import HowItWorks from './Components/HowItWorks'
+import Login from './Components/Login/Login';
+import HowItWorks from './Components/HowItWorks/HowItWorks'
 import Gvg from './Components/GvgContent/Gvg';
-import CreateAccount from './Components/CreateAccount';
+import CreateAccount from './Components/Login/CreateAccount';
 import Overview from './Components/Admin/Overview';
-import BannedPage from './Components/BannedPage';
-import Stat from './Components/Stat';
+import BannedPage from './Components/BannedPage/BannedPage';
+import Stat from './Components/Statistic/Stat';
 
 
 function App() {

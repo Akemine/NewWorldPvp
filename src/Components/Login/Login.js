@@ -1,10 +1,10 @@
-import '../Styles/Login.css'
+import '../../Styles/Login/Login.css'
 
+import React from 'react';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
-import React from 'react';
-
 import { Link, Redirect } from "react-router-dom";
+
 let login = ""
 let password = ""
 let faction = ""
@@ -139,12 +139,12 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    ConnectState: state.ConnectState,
-    Login: state.Login,   
-    Password: state.Password,
-    Faction: state.Faction,
-    Role: state.Role,
-    Banned: state.Banned
+    ConnectState: state.loginReducer.ConnectState,
+    Login: state.loginReducer.Login,   
+    Password: state.loginReducer.Password,
+    Faction: state.loginReducer.Faction,
+    Role: state.loginReducer.Role,
+    Banned: state.loginReducer.Banned
   }
 }
 
