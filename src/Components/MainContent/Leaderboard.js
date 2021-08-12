@@ -35,13 +35,10 @@ class Leaderboard extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.Login !== this.props.Login)
+        if(prevProps.Faction !== this.props.Faction)
         {
-            // this.getLeaderboard()
-            // this.ownColor()
+            this.ownColor()
         }
-        
-        
     }
 
     // Change l'input en bg white si crimson

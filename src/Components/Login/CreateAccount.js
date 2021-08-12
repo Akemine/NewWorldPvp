@@ -3,19 +3,20 @@ import '../../Styles/Login/Login.css'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import React from 'react';
-import MainContent from '../MainContent/MainContent'
+import { Redirect } from "react-router-dom";
 
 
 
 let guild_name = ""
 let password = ""
+let faction = ""
 
 const txt_title = "CREATE MY GUILD"
 class CreateAccount extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isConnected: false, guild_name: '', password: '', pseudo: '', badConnection: false, backgroundColor: 'white', backgroundColorForm: '', faction: '', colorFaction: '', backgroundColorSubmit: '', server: 'Kvenland' };
+        this.state = { isConnected: false, guild_name: '', faction: '', password: '', pseudo: '', badConnection: false, backgroundColor: 'white', backgroundColorForm: '', colorFaction: '', backgroundColorSubmit: '', server: 'Kvenland' };
 
         this.handleGuildName = this.handleGuildName.bind(this)
         this.handlePseudo = this.handlePseudo.bind(this);
@@ -81,6 +82,7 @@ class CreateAccount extends React.Component {
                 if (response) {
                     guild_name = this.state.guild_name
                     password = this.state.password
+                    faction = this.state.faction
                     this.props.Logged()
                 }
                 else {
@@ -92,14 +94,11 @@ class CreateAccount extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.Login !== this.props.Login) {
-            this.props.history.push('/leaderboard');
-        }
     }
 
     render() {
         if (this.props.ConnectState) {
-            return <MainContent />
+            return <Redirect to="/leaderboard"/>
         }
         else if (this.state.badConnection) {
             return (
@@ -118,7 +117,6 @@ class CreateAccount extends React.Component {
         }
         else if (!this.props.ConnectState) {
             return (
-                
                 <div>
                     <form className="form-display" style={{ backgroundColor: this.state.backgroundColorForm, transition: '0.5s' }}>
                         <h1 className="title-form">{txt_title}</h1><hr className="hr-form" />
@@ -155,15 +153,18 @@ class CreateAccount extends React.Component {
 const mapStateToProps = state => {
     return {
         ConnectState: state.loginReducer.ConnectState,
-        Login: state.loginReducer.Login,
-        Password: state.loginReducer.Password
+        Login: state.loginReducer.Login,   
+        Password: state.loginReducer.Password,
+        Faction: state.loginReducer.Faction,
+        Role: state.loginReducer.Role,
+        Banned: state.loginReducer.Banned
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         Logged: isConnected => {
-            dispatch({ type: "USER_CONNECTED", ConnectState: true, Login: guild_name, Password: password })
+            dispatch({type: "USER_CONNECTED", ConnectState: true, Login: guild_name, Faction: faction, Password: password, Role: 'guild', Banned: false })
         }
     }
 }
