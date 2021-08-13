@@ -87,12 +87,36 @@ class warWaiting extends React.Component {
                 this.synchroniseWinElo(idDeLaWar, response)
             })
     }
+
+        // CANCEL
+    // BDD : 
+    // delete de last wars
+    // update les cotes pour rollback
+    // FILTER : 
+    // delete de last wars
+    // mets à jour last wars
+    async cancelProposedWar(idWar, i) {
+        await fetch('http://54.37.74.45:5000/api/v1/cancelProposedWar', {
+            method: "POST",
+            body: JSON.stringify({
+                "idWar": idWar,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        this.state.warWaiting.splice(i, 1)
+        this.setState({warWaiting: this.state.warWaiting})
+    }
+
+
     render() {
         return (
             <div className="warWaiting-gvg">
                 <h1 className="title">DECLARED WARS</h1>
                 <div className="warWaiting-gvg-content">
-                    {this.state.warWaiting.map((war) => {
+                    {this.state.warWaiting.map(function(war, i) {
                         let diffDate = DateFunction.getDifferenceInDays(date, new Date(war.date_war))
                         // SI info date === in, cela veut dire que la date est DANS le futur et donc ok.
                         if (diffDate < 1.20){
@@ -101,9 +125,10 @@ class warWaiting extends React.Component {
                                     return <>
                                         <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#ffa1051c'}}>
                                             <div className="container" key={war.id}>
-                                                <h3 style={{ color: 'white' }} className="bold-txt">{war.guild_attaquer}</h3>
+                                                <h3 style={{ color: 'white' }} className="bold-txt">WAR ID : {war.id} - {war.guild_attaquer}</h3>
                                                 <div style={{ color: 'white' }} className="bold-txt">{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players - {war.lieu}</div>
                                                 <div className="bold-txt card_declared_war pending">Pending...</div>
+                                                <div className="bold-txt card_declared_war declined cancel-btn-hover" onClick={() => this.cancelProposedWar(war.id, i)}>Cancel</div>
                                             </div>
                                         </div>
                                     </>
@@ -112,7 +137,7 @@ class warWaiting extends React.Component {
                                     return <>
                                         <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#76ff050d'}}>
                                             <div className="container" key={war.id} style={{width: '100%'}} >
-                                                <h3 style={{ color: 'white' }} className="bold-txt">{war.guild_attaquer}</h3>
+                                                <h3 style={{ color: 'white' }} className="bold-txt">WAR ID : {war.id} - {war.guild_attaquer}</h3>
                                                 <div style={{ color: 'white' }} className="bold-txt">{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players - {war.lieu}</div>
                                                 <div className="display-flex-row-declared-wars">
                                                     <button className="btn btn-declared-wars"><span className="bold-txt" ><Link key={war.id} to="/gvg" className="btn-no-deco" onClick={() => this.synchroniseWinElo(war.id, this.props.Login)}>I WON</Link></span></button>
@@ -127,7 +152,7 @@ class warWaiting extends React.Component {
                                     return <>
                                         <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#ff05050d'}}>
                                             <div className="container" key={war.id} >
-                                                <h3 style={{ color: 'white' }} className="bold-txt">{war.guild_attaquer}</h3>
+                                                <h3 style={{ color: 'white' }} className="bold-txt">WAR ID : {war.id} - {war.guild_attaquer}</h3>
                                                 <div style={{ color: 'white' }} className="bold-txt">{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players - {war.lieu}</div>
                                                 <div className="bold-txt card_declared_war declined">Declined</div>
                                             </div>
@@ -136,7 +161,7 @@ class warWaiting extends React.Component {
                                 }
                             } 
                         }
-                    })}
+                    }, this)}
                 </div>
             </div>
         )

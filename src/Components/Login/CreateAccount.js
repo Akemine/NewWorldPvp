@@ -14,11 +14,16 @@ import { format } from 'date-fns'
 
 import DateFunction from '../DateFunction'
 
+const publicIp = require('public-ip');
+
 let guild_name = ""
 let password = ""
 let faction = ""
+let ip 
 
 const txt_title = "CREATE MY GUILD"
+
+
 class CreateAccount extends React.Component {
 
     // TOAST DU COMPOSANT 
@@ -55,7 +60,7 @@ class CreateAccount extends React.Component {
             colorPseudo: '',
             accountData: [],
             addressData: [],
-            ipAlreadyUsed: true
+            ipAlreadyUsed: false
         };
 
         this.handleGuildName = this.handleGuildName.bind(this)
@@ -72,8 +77,10 @@ class CreateAccount extends React.Component {
         })
     }
 
-    handlePseudo(event) {
+    async handlePseudo(event) {
         this.setState({ pseudo: event.target.value });
+        console.log(ip)
+        console.log(format(new Date(), 'MM/dd/yyyy'))
     }
 
     handleGuildName(event) {
@@ -147,8 +154,7 @@ class CreateAccount extends React.Component {
 
 
     handleSubmit = (event) => {
-        console.log(this.state.ip)
-        console.log(this.state.addressData)
+        event.preventDefault();
         if (this.state.faction === '') {
             this.notify_error_faction()
             this.setState({ backgroundColorFaction: 'crimson'})
@@ -207,6 +213,7 @@ class CreateAccount extends React.Component {
                 this.notify_error_guildName_alreadyExist(this.state.guild_name)
             }
             if (!flag_guild_name && !flag_pseudo){
+
                 fetch('http://54.37.74.45:5000/api/v1/createNewAccount', {
                     method: "POST",
                     body: JSON.stringify({
@@ -215,12 +222,8 @@ class CreateAccount extends React.Component {
                         "password": this.state.password,
                         "faction": this.state.faction,
                         "server": this.state.server,
-                        "ip" : this.state.ip.ip, 
-                        "country_code" : this.state.ip.country_code,
-                        "country_name" : this.state.ip.country_name,
-                        "latitude" : this.state.ip.latitude,
-                        "longitude" : this.state.ip.longitude,
-                        "timestamp" : format(new Date(), 'MM/dd/yyyy')
+                        "ip" : ip,
+                        "timestamp": format(new Date(), 'MM/dd/yyyy')
                     }),
                     headers: {
                         "Content-Type": "application/json"
@@ -241,30 +244,26 @@ class CreateAccount extends React.Component {
         event.preventDefault();
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.getAccount()
-        this.getDataFromIP()
+        ip = await publicIp.v4()
         this.getAddress()
-        this.checkIP()
     }
 
     componentDidUpdate(prevProps, prevState){
+        if(prevState.addressData !== this.state.addressData){
+            this.checkIP()
+        }
     }
 
-    async getDataFromIP() {
-        await axios.get('https://geolocation-db.com/json/')
-        .then(res => {
-            const ip = res.data;
-            this.setState({ ip });
-        })
-      }
 
       checkIP(){
         let date = new Date()
         this.state.addressData.forEach(el => {
-            if (el.ip === this.state.ip.IPv4){
+            if (el.ip === ip){
                 let diffDate = DateFunction.getDifferenceInDays(date, date)
-                if(diffDate > 3.0){
+                console.log(diffDate)
+                if(diffDate < 1.0){
                     this.setState({ipAlreadyUsed: true})
                 }
             }
@@ -301,6 +300,7 @@ class CreateAccount extends React.Component {
         </div>)
       }
     render() {
+        console.log(this.props.ConnectState)
         if (this.props.ConnectState) {
             return <MainContent />
         }

@@ -269,6 +269,13 @@ class FormGvg extends React.Component {
         }
         // SI tout est ok, appel API
         else {
+            // console.log(this.props.Login)
+            // console.log(this.state.ennemy_team)
+            // console.log(this.state.lieu)
+            // console.log(this.state.hour + ':' + this.state.minutes + ' ' + this.state.AMPM)
+            // console.log(this.state.date)
+            // console.log(this.state.players)
+            event.preventDefault();
             fetch('http://54.37.74.45:5000/api/v1/declareWarTo', {
                 method: "POST",
                 body: JSON.stringify({
@@ -283,14 +290,18 @@ class FormGvg extends React.Component {
                     "Content-Type": "application/json"
                 }
             })
-                .then(response => response.json())
-                .then(response => {
-                    // SI OK ...
-                    if (response) {
-                        window.location.reload()
-                        this.setState({ resetForm: true })
-                    }
-                })
+            .then(response => response.json())
+            .then(response => {
+                // SI OK ...
+                if (response) {
+                    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    window.location.reload()
+                    this.setState({ resetForm: true })
+                }
+                else {
+                    event.preventDefault();
+                }
+            })
         }
         // event.preventDefault();
     }

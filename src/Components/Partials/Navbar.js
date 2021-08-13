@@ -11,6 +11,7 @@ const leaderboard = "LEADERBOARD"
 const gvg = "GUILD VS GUILD"
 const hiw = "HOW IT WORKS ?"
 const adminway = "ADMIN OVERVIEW"
+const douane = "DOUANE"
 const historiquegvg = "MY GUILD"
 
 
@@ -29,6 +30,7 @@ class Navbar extends React.Component {
       <div className="nav-menu">
         <div><Link to="/leaderboard" className="leaderboard btnNavbar">{leaderboard}</Link></div>
         <div><Link to="/overview" className="howitworks btnNavbar">{adminway}</Link></div>
+        <div><Link to="/douane" className="howitworks btnNavbar">{douane}</Link></div>
       </div>
       <div className="nav-menu-connection">
         <span className="connection">You are connected as

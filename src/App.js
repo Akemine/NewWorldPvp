@@ -18,13 +18,10 @@ import CreateAccount from './Components/Login/CreateAccount';
 import Overview from './Components/Admin/Overview';
 import BannedPage from './Components/BannedPage/BannedPage';
 import Stat from './Components/Statistic/Stat';
-import CheckIpAdress from './Components/Login/CheckIpAdress';
+import Douane from './Components/Admin/Douane';
 
 
 function App() {
-
-  const hostname = '54.37.74.45'
-  // const hostname = 'localhost'
   
   return (
 
@@ -59,8 +56,8 @@ function App() {
             <Route path="/overview" >
               <Overview />
             </Route>
-            <Route path="/checkip">
-              <CheckIpAdress />
+            <Route path="/douane">
+              <Douane />
             </Route>
             <Route path='*' exact={true} component={MainContent} />
           </Switch>

@@ -132,11 +132,11 @@ class warAcceptOrRefuse extends React.Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="btn">
-                                        <span><Link to="/gvg" className="btn-no-deco" onClick={() => this.AcceptWar(war.id)}>ACCEPT</Link></span>
+                                    <button className="btn" onClick={() => this.AcceptWar(war.id)}>
+                                        <span><Link to="/gvg" className="btn-no-deco">ACCEPT</Link></span>
                                     </button>
-                                    <button className="btn decline">
-                                        <span><Link to="/gvg" className="btn-no-deco" onClick={() => this.DeclineWar(war.id)}>DECLINE</Link></span>
+                                    <button className="btn decline" onClick={() => this.DeclineWar(war.id)}>
+                                        <span><Link to="/gvg" className="btn-no-deco">DECLINE</Link></span>
                                     </button>
                                 </div>
                             </div>
