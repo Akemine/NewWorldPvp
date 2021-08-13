@@ -11,7 +11,7 @@ export default class LastWars extends Component {
   }
 
   async getLastWars() {
-    await axios.get(`http://localhost:5000/api/v1/getLastWars`)
+    await axios.get('http://54.37.74.45:5000/api/v1/getLastWars')
       .then(res => {
         const last_wars = res.data;
         this.setState({ last_wars });

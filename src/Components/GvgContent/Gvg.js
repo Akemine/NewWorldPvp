@@ -33,7 +33,6 @@ class Gvg extends React.Component {
                 return <Redirect to="/banned" />
             }
             else {
-                console.log(this.props.ConnectState)
                 return (
                     <div className="main">
                     <div className="main-gvg">

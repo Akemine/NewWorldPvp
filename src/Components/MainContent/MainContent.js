@@ -21,7 +21,7 @@ class MainContent extends Component {
                 return (
                     <div>
                         <div className="main-search">
-                                <ServerChoice userID="test"/> 
+                                <ServerChoice /> 
                         </div>
                         <div className="main-content">
                             <Leaderboard />
@@ -35,7 +35,7 @@ class MainContent extends Component {
             return (
                 <div>
                     <div className="main-search">
-                        <ServerChoice userID="test"/> 
+                        <ServerChoice /> 
                     </div>
                     <div className="main-content">
                         <Leaderboard />

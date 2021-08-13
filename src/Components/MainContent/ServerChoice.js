@@ -32,7 +32,7 @@ class ServerChoice extends Component {
     }
 
     async getAllServer(){
-      await axios.get(`http://localhost:5000/api/v1/getServerList`)
+      await axios.get('http://54.37.74.45:5000/api/v1/getServerList')
       .then(res => {
         const servers = res.data;
         this.setState({ servers });

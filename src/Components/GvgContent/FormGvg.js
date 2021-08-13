@@ -72,7 +72,7 @@ class FormGvg extends React.Component {
     // CALL API DU COMPOSANT
     // TROUVE LES GUILDES CONTRE QUI ON PEUT WAR
     async findEnnemyGuilds() {
-        await fetch('http://localhost:5000/api/v1/findGuildWhoAreNotInMyFaction', {
+        await fetch('http://54.37.74.45:5000/api/v1/findGuildWhoAreNotInMyFaction', {
             method: "POST",
             body: JSON.stringify({
                 "myGuild": this.props.Login,
@@ -269,7 +269,7 @@ class FormGvg extends React.Component {
         }
         // SI tout est ok, appel API
         else {
-            fetch('http://localhost:5000/api/v1/declareWarTo', {
+            fetch('http://54.37.74.45:5000/api/v1/declareWarTo', {
                 method: "POST",
                 body: JSON.stringify({
                     "guild_proposeur": this.props.Login,
@@ -287,10 +287,12 @@ class FormGvg extends React.Component {
                 .then(response => {
                     // SI OK ...
                     if (response) {
+                        window.location.reload()
                         this.setState({ resetForm: true })
                     }
                 })
         }
+        // event.preventDefault();
     }
     ///////////////////////////////////////////////////////////
 

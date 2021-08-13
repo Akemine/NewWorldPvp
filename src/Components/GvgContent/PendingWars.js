@@ -48,7 +48,7 @@ class warAcceptOrRefuse extends React.Component {
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // Cherche les wars qu'on peut accepter ou refuser
     async findWarIHaveToAcceptOrDecline() {
-        await fetch('http://localhost:5000/api/v1/getMyWarIHaveToAccept', {
+        await fetch('http://54.37.74.45:5000/api/v1/getMyWarIHaveToAccept', {
             method: "POST",
             body: JSON.stringify({
                 "myGuild": this.props.Login,
@@ -67,7 +67,7 @@ class warAcceptOrRefuse extends React.Component {
     // PERMET DE PASSER A TRUE LA VALEUR DE LA WAR POUR DIRE QU'ELLE EST ACCEPTE
     async acceptWar(id) {
 
-        await fetch('http://localhost:5000/api/v1/acceptWar', {
+        await fetch('http://54.37.74.45:5000/api/v1/acceptWar', {
             method: "POST",
             body: JSON.stringify({
                 "id": id,
@@ -86,7 +86,7 @@ class warAcceptOrRefuse extends React.Component {
 
     async declineWar(id) {
 
-        await fetch('http://localhost:5000/api/v1/declineWar', {
+        await fetch('http://54.37.74.45:5000/api/v1/declineWar', {
             method: "POST",
             body: JSON.stringify({
                 "id": id,

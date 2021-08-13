@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Overview extends Component {
 
@@ -31,7 +31,7 @@ class Overview extends Component {
     }
 
     async getAllGuild() {
-        await axios.get(`http://localhost:5000/api/v1/getAllGuild`)
+        await axios.get('http://54.37.74.45:5000/api/v1/getAllGuild')
             .then(res => {
                 const guilds = res.data;
                 this.setState({ guilds });
@@ -39,7 +39,7 @@ class Overview extends Component {
     }
 
     async getBannedGuild() {
-        await axios.get(`http://localhost:5000/api/v1/getBannedGuild`)
+        await axios.get('http://54.37.74.45:5000/api/v1/getBannedGuild')
             .then(res => {
                 const banned_guilds = res.data;
                 this.setState({ banned_guilds });
@@ -47,7 +47,7 @@ class Overview extends Component {
     }
 
     async getAllLastWars() {
-        await axios.get(`http://localhost:5000/api/v1/getAllLastWars`)
+        await axios.get('http://54.37.74.45:5000/api/v1/getAllLastWars')
             .then(res => {
                 const last_wars = res.data;
                 this.setState({ last_wars });
@@ -87,7 +87,7 @@ class Overview extends Component {
     // ajoute la ligne à banned_guilds
     // mets à jour l'état banned_guilds
     async banGuild(id, i, guild_name, warn) {
-        await fetch('http://localhost:5000/api/v1/banGuild', {
+        await fetch('http://54.37.74.45:5000/api/v1/banGuild', {
             method: "POST",
             body: JSON.stringify({
                 "idGuild": id,
@@ -113,7 +113,7 @@ class Overview extends Component {
     // ajoute la ligne à guilds
     // mets à jour l'état guilds
     async unBanGuild(id, i, guild_name, warn) {
-        await fetch('http://localhost:5000/api/v1/unBanGuild', {
+        await fetch('http://54.37.74.45:5000/api/v1/unBanGuild', {
             method: "POST",
             body: JSON.stringify({
                 "idGuild": id,
@@ -135,7 +135,7 @@ class Overview extends Component {
     // incrémente warn
     // mets à jour l'état guilds
     async warnGuild(id, i, guildname, warnNumber) {
-        await fetch('http://localhost:5000/api/v1/warnGuild', {
+        await fetch('http://54.37.74.45:5000/api/v1/warnGuild', {
             method: "POST",
             body: JSON.stringify({
                 "idGuild": id,
@@ -163,7 +163,7 @@ class Overview extends Component {
         if (warnNumber > 0) {
             this.state.guilds[i].warn = this.state.guilds[i].warn - 1
             this.setState({ guilds: this.state.guilds })
-            await fetch('http://localhost:5000/api/v1/unWarnGuild', {
+            await fetch('http://54.37.74.45:5000/api/v1/unWarnGuild', {
                 method: "POST",
                 body: JSON.stringify({
                     "idGuild": id,
@@ -183,7 +183,7 @@ class Overview extends Component {
     // delete de last wars
     // mets à jour last wars
     async cancelMatch(idWar, i) {
-        await fetch('http://localhost:5000/api/v1/cancelMatch', {
+        await fetch('http://54.37.74.45:5000/api/v1/cancelMatch', {
             method: "POST",
             body: JSON.stringify({
                 "idWar": idWar,
@@ -206,7 +206,7 @@ class Overview extends Component {
     // delete de last wars
     // mets à jour last wars
     async replayMatch(idWar, i) {
-        await fetch('http://localhost:5000/api/v1/replayMatch', {
+        await fetch('http://54.37.74.45:5000/api/v1/replayMatch', {
             method: "POST",
             body: JSON.stringify({
                 "idWar": idWar,

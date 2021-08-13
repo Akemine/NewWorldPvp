@@ -18,10 +18,14 @@ import CreateAccount from './Components/Login/CreateAccount';
 import Overview from './Components/Admin/Overview';
 import BannedPage from './Components/BannedPage/BannedPage';
 import Stat from './Components/Statistic/Stat';
+import CheckIpAdress from './Components/Login/CheckIpAdress';
 
 
 function App() {
 
+  const hostname = '54.37.74.45'
+  // const hostname = 'localhost'
+  
   return (
 
     <Router>
@@ -31,29 +35,32 @@ function App() {
         </div>
         <div className="Content">
           <Switch>
-            <Route path="/banned">
+            <Route path="/banned" >
               <BannedPage />
             </Route>
-            <Route path="/leaderboard">
+            <Route path="/leaderboard" >
               <MainContent />
             </Route>
-            <Route path="/login">
+            <Route path="/login" >
               <Login />
             </Route>
-            <Route path="/createaccount">
+            <Route path="/createaccount" >
               <CreateAccount />
             </Route>
-            <Route path="/gvg">
+            <Route path="/gvg" >
               <Gvg />
             </Route>
-            <Route path="/howitworks">
+            <Route path="/howitworks" >
               <HowItWorks />
             </Route>
-            <Route path="/stat">
+            <Route path="/stat" >
               <Stat />
             </Route>
-            <Route path="/overview">
+            <Route path="/overview" >
               <Overview />
+            </Route>
+            <Route path="/checkip">
+              <CheckIpAdress />
             </Route>
             <Route path='*' exact={true} component={MainContent} />
           </Switch>

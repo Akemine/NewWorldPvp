@@ -22,7 +22,7 @@ class Leaderboard extends Component {
     }
 
     async getLeaderboard() {
-        await axios.get(`http://localhost:5000/api/v1/getLeaderboard`)
+        await axios.get('http://54.37.74.45:5000/api/v1/getLeaderboard')
             .then(res => {
                 const guilds = res.data;
                 this.setState({ guilds });

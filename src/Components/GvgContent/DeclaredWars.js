@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Link } from "react-router-dom";
 
+import DateFunction from '../DateFunction'
+
 let date = new Date()
 
 class warWaiting extends React.Component {
@@ -20,7 +22,7 @@ class warWaiting extends React.Component {
     }
 
     async findWarInWaiting() {
-        await fetch('http://localhost:5000/api/v1/getMyWarProposed', {
+        await fetch('http://54.37.74.45:5000/api/v1/getMyWarProposed', {
             method: "POST",
             body: JSON.stringify({
                 "myGuild": this.props.Login,
@@ -54,7 +56,7 @@ class warWaiting extends React.Component {
 
 
     async synchroniseWinElo(idDeLaWar, guildNameWinner){
-        await fetch('http://localhost:5000/api/v1/synchroniseElo', {
+        await fetch('http://54.37.74.45:5000/api/v1/synchroniseElo', {
             method: "POST",
             body: JSON.stringify({
                 "idWar": idDeLaWar,
@@ -70,7 +72,7 @@ class warWaiting extends React.Component {
     }
 
     async synchroniseLooseElo(idDeLaWar){
-        await fetch('http://localhost:5000/api/v1/getLooser', {
+        await fetch('http://54.37.74.45:5000/api/v1/getLooser', {
             method: "POST",
             body: JSON.stringify({
                 "idWar": idDeLaWar,
@@ -91,7 +93,7 @@ class warWaiting extends React.Component {
                 <h1 className="title">DECLARED WARS</h1>
                 <div className="warWaiting-gvg-content">
                     {this.state.warWaiting.map((war) => {
-                        let diffDate = this.getDifferenceInDays(date, new Date(war.date_war))
+                        let diffDate = DateFunction.getDifferenceInDays(date, new Date(war.date_war))
                         // SI info date === in, cela veut dire que la date est DANS le futur et donc ok.
                         if (diffDate < 1.20){
                             if(!war.archive){

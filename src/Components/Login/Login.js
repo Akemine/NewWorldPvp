@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
 import { Link, Redirect } from "react-router-dom";
+import axios from 'axios';
 
 let login = ""
 let password = ""
@@ -40,7 +41,7 @@ class Login extends React.Component {
       
     
       handleSubmit = (event) => {
-          fetch('http://localhost:5000/api/v1/CheckLogin', {
+          fetch('http://54.37.74.45:5000/api/v1/CheckLogin', {
           method: "POST",
           body: JSON.stringify({
             "login" : this.state.login,
@@ -53,7 +54,7 @@ class Login extends React.Component {
         .then(response => response.json())
         .then(response => {
           if(response){
-            fetch('http://localhost:5000/api/v1/getAccountData', {
+            fetch('http://54.37.74.45:5000/api/v1/getAccountData', {
               method: "POST",
               body: JSON.stringify({
                 "login" : this.state.login,
@@ -85,8 +86,7 @@ class Login extends React.Component {
         event.preventDefault();
       }
 
-      componentDidUpdate(prevProps, prevState){
-
+      componentDidMount(){
       }
 
     render() {
