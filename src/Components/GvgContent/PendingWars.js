@@ -29,16 +29,14 @@ class warAcceptOrRefuse extends React.Component {
 
     // FONCTIONS DU COMPOSANT 
     // FONCTION QUI EST APPELLE QUAND ON ACCEPTE UNE WAR
-    AcceptWar = (id) => {
-        this.notify_war_accepted() // Toast de war accepted
-        this.acceptWar(id) // API qui va update la war 
+    async AcceptWar(id) {
+        await this.acceptWar(id) // API qui va update la war 
         window.location.reload()
     }
 
     // FONCTION QUI EST APPELLE QUAND ON DECLINE UNE WAR
-    DeclineWar = (id) => {
-        this.notify_war_declined() // Toast de war declined
-        this.declineWar(id) // API qui va update la war 
+    async DeclineWar (id) {
+        await this.declineWar(id) // API qui va update la war 
         window.location.reload()
     }
     /////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +64,6 @@ class warAcceptOrRefuse extends React.Component {
     // API CALL
     // PERMET DE PASSER A TRUE LA VALEUR DE LA WAR POUR DIRE QU'ELLE EST ACCEPTE
     async acceptWar(id) {
-
         await fetch('http://54.37.74.45:5000/api/v1/acceptWar', {
             method: "POST",
             body: JSON.stringify({
@@ -85,7 +82,6 @@ class warAcceptOrRefuse extends React.Component {
     }
 
     async declineWar(id) {
-
         await fetch('http://54.37.74.45:5000/api/v1/declineWar', {
             method: "POST",
             body: JSON.stringify({
@@ -123,11 +119,12 @@ class warAcceptOrRefuse extends React.Component {
                 <h1 className="title">PENDING WARS</h1>
                 <div className="gvg-acceptwar-main">
                     {this.state.warAcceptOrRefuse.map((war) => {
+                        console.log(war.id)
                         if (war.accepted === null) {
                             return <div className="gvg-acceptwar-capsule">
                                 <div className="list-flexbox-leaderboard-gvg">
                                     <div key={war.id} className="bold-txt">
-                                        <span style={{ color: '#ffb10f' }}>{war.guild_proposeur}</span>
+                                        <span style={{ color: '#ffb10f' }}>WAR ID : {war.id}  {war.guild_proposeur}</span>
                                         <div style={{ color: 'white' }}>{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players </div>
                                     </div>
                                 </div>

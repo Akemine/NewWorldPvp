@@ -224,12 +224,12 @@ class Overview extends Component {
     render() {
         if (this.props.Role === "admin") {
             return (
-                <div className="overview-main" style={{ margin: '0 auto', width: '80%' }}>
+                <div className="overview-main" style={{ margin: '0 auto'}}>
                     <ToastContainer hideProgressBar={false} autoClose={6000} position="top-center" />
                     <div style={{ width: '100%' }}>
                         <p className="title">OVERVIEW ADMIN</p>
                         <div className="overview-main-content">
-                            <div>
+                            <div className="box-overview">
                                 <p className="title">BAN GUILD</p>
                                 <div style={{ textAlign: 'left', overflowY: 'auto', height: '450px' }}>
                                     <table style={{ width: '100%', borderSpacing: '1.8em 0.4em' }}>
@@ -260,7 +260,7 @@ class Overview extends Component {
                                     </table>
                                 </div>
                             </div>
-                            <div>
+                            <div className="box-overview">
                                 <p className="title">UNBAN GUILD</p>
                                 <div style={{ textAlign: 'left', overflowY: 'auto', height: '450px' }}>
                                     <table style={{ width: '100%', borderSpacing: '1.8em 0.4em' }}>
@@ -286,7 +286,7 @@ class Overview extends Component {
                                 </div>
 
                             </div>
-                            <div>
+                            <div className="box-overview">
                                 <p className="title">ROLLBACK WAR</p>
                                 <div style={{ textAlign: 'left', overflowY: 'auto', height: '450px' }}>
                                     <table style={{ width: '100%', borderSpacing: '1.8em 0.4em' }}>

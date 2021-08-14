@@ -30,6 +30,7 @@ function App() {
         <div className="Header">
           <Navbar />
         </div>
+        
         <div className="Content">
           <Switch>
             <Route path="/banned" >

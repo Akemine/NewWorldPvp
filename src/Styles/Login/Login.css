@@ -6,14 +6,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(35 34 32 / 80%);
+    background-color: #020202d1;
     margin: 0 auto;
     width: 30%;
     border-radius: 4px;
+    padding: 2%;
 }
 
 .btn-submit{
-    width: 80%;
+    width: 100%;
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     border: none;
@@ -33,7 +34,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: #04AA6D;
+    background-color: #0987b1;
     color: #ffffff;
     padding: 12px 20px;
     margin: 8px 0;
@@ -43,23 +44,28 @@
 }
 
 .btn-submit:hover{
-    background-color: #026944;
+    background-color: #04465d;
     transition: 1s;
-    color: black;
+    color: white;
 }
 .label-name{
-    width: 80%;
+    width: 100%;
     text-align: left;
     margin-top: 3%;
 }
 
 .label-password{
+    width: 100%;
+    text-align: left;
+}
+
+.label-password-form-gvg{
     width: 80%;
     text-align: left;
 }
 
 .input-css{
-    width: 80%;
+    width: 100%;
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     border: none;
@@ -87,7 +93,7 @@
 }
 
 .input-css-error{
-    width: 80%;
+    width: 100%;
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     border: none;
@@ -121,7 +127,7 @@
 }
 
 .hr-form{
-    width: 50%;
+    width: 65%;
 }
 
 .create-account-link{

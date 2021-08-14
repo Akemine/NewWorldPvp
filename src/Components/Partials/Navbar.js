@@ -7,6 +7,7 @@ import logo from '../../asset/WIP.png'
 
 import { Link } from "react-router-dom";
 
+
 const leaderboard = "LEADERBOARD"
 const gvg = "GUILD VS GUILD"
 const hiw = "HOW IT WORKS ?"
@@ -17,12 +18,46 @@ const historiquegvg = "MY GUILD"
 
 const width_logo = '110px'
 const marginLeft_logo = '30%'
-const marginTop_logo = '20%'
+const marginTop_logo = '0%'
+
 class Navbar extends React.Component {
+
+  state = {
+    countWarDeclared: 0,
+    tampon: 0
+  }
 
   DisconnectClick = () => {
     this.props.Unlogged()
   }
+
+  async getCountWarDeclared() {
+    await fetch('http://54.37.74.45:5000/api/v1/getCountMyWarIHaveToAccept', {
+        method: "POST",
+        body: JSON.stringify({
+            "myGuild": this.props.Login,
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(response => {
+          
+          this.setState({ tampon: response })
+        })
+  }
+
+  componentDidMount(){
+    this.getCountWarDeclared()
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.tampon !== this.state.tampon){
+      this.setState({countWarDeclared: this.state.tampon[0].count})
+    }
+  }
+
 
   displayAdminNavbar() {
     return <div className="header">
@@ -51,7 +86,7 @@ class Navbar extends React.Component {
       <div className="logo"><img src={logo} alt="Logo" style={{ width: width_logo, marginLeft: marginLeft_logo, marginTop: marginTop_logo }} /></div>
       <div className="nav-menu">
         <div><Link to="/leaderboard" className="leaderboard btnNavbar">{leaderboard}</Link></div>
-        <div><Link to="/gvg" className="gvg btnNavbar">{gvg}</Link></div>
+        <div><Link to="/gvg" className="gvg btnNavbar">{gvg}({this.state.countWarDeclared})</Link></div>
         <div><Link to="/stat" className="howitworks btnNavbar">{historiquegvg}</Link></div>
       </div>
       <div className="nav-menu-connection">

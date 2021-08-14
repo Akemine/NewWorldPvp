@@ -54,68 +54,68 @@ class Leaderboard extends Component {
         }
     }
 
-    displayFirstSecondAndThirdOfLadder(guildRank, guildName, guildGM, guildCote, guildFaction, guildServer) {
+    displayFirstSecondAndThirdOfLadder(guildRank, guildName, guildGM, guildCote, guildFaction, guildServer, win, loose) {
         // this.changeBgColor(guildFaction)
         if(this.props.Login === guildName){
             if (guildRank === 1) {
                 return <tr style={{ color: this.state.ownColor }}>
                     <td style={{ color: this.state.ownColor }} className="table-header first first-ladder">{guildRank} </td>
-                    <td style={{ color: this.state.ownColor }} className="first-ladder">{guildName}</td>
+                    <td style={{ color: this.state.ownColor }} className="first-ladder">{guildName} ({win - loose})</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildCote}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildGM}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildFaction}</td>
-                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildServer}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildServer}</td>
                 </tr>
             }
             else if (guildRank === 2) {
                 return <tr style={{ color: this.state.ownColor }}>
                     <td style={{ color: this.state.ownColor }} className="table-header first first-ladder">{guildRank} </td>
-                    <td style={{ color: this.state.ownColor }} className="second-ladder">{guildName}</td>
+                    <td style={{ color: this.state.ownColor }} className="second-ladder">{guildName} ({win - loose})</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildCote}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildGM}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildFaction}</td>
-                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildServer}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildServer}</td>
                 </tr>
             }
             else if (guildRank === 3) {
                 return <tr style={{ color: this.state.ownColor }}>
                     <td style={{ color: this.state.ownColor }} className="table-header first first-ladder">{guildRank} </td>
-                    <td style={{ color: this.state.ownColor }} className="third-ladder">{guildName}</td>
+                    <td style={{ color: this.state.ownColor }} className="third-ladder">{guildName} ({win - loose})</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildCote}</td>
                     <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildGM}</td>
-                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildFaction}</td>
-                    <td style={{ color: this.state.ownColor }} className="table-heade first-ladder">{guildServer}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildFaction}</td>
+                    <td style={{ color: this.state.ownColor }} className="table-header first-ladder">{guildServer}</td>
                 </tr>
             }
         }
         if (guildRank === 1) {
             return <tr style={{ color: 'white' }}>
                 <td className="table-header first first-ladder">{guildRank} </td>
-                <td className="first-ladder">{guildName}</td>
+                <td className="first-ladder">{guildName} ({win - loose})</td>
                 <td className="table-header first-ladder">{guildCote}</td>
                 <td className="table-header first-ladder">{guildGM}</td>
                 <td className="table-header first-ladder">{guildFaction}</td>
-                <td className="table-heade first-ladder">{guildServer}</td>
+                <td className="table-header first-ladder">{guildServer}</td>
             </tr>
         }
         else if (guildRank === 2) {
             return <tr style={{ color: 'white' }}>
                 <td className="table-header first first-ladder">{guildRank} </td>
-                <td className="second-ladder">{guildName}</td>
+                <td className="second-ladder">{guildName} ({win - loose})</td>
                 <td className="table-header first-ladder">{guildCote}</td>
                 <td className="table-header first-ladder">{guildGM}</td>
                 <td className="table-header first-ladder">{guildFaction}</td>
-                <td className="table-heade first-ladder">{guildServer}</td>
+                <td className="table-header first-ladder">{guildServer}</td>
             </tr>
         }
         else if (guildRank === 3) {
             return <tr style={{ color: 'white' }}>
                 <td className="table-header first first-ladder">{guildRank} </td>
-                <td className="third-ladder">{guildName}</td>
+                <td className="third-ladder">{guildName} ({win - loose})</td>
                 <td className="table-header first-ladder">{guildCote}</td>
                 <td className="table-header first-ladder">{guildGM}</td>
-                <td className="table-heade first-ladder">{guildFaction}</td>
-                <td className="table-heade first-ladder">{guildServer}</td>
+                <td className="table-header first-ladder">{guildFaction}</td>
+                <td className="table-header first-ladder">{guildServer}</td>
             </tr>
         }
     }
@@ -130,11 +130,11 @@ class Leaderboard extends Component {
             this.setState({ownColor: '#fba200'})
         }
     }
-    displayLadder(guildRank, guildName, guildGM, guildCote, guildFaction, guildServer) {
+    displayLadder(guildRank, guildName, guildGM, guildCote, guildFaction, guildServer, win, loose) {
         if(this.props.Login === guildName){
         return <tr>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildRank}</td>
-            <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildName}</td>
+            <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildName} ({win - loose})</td>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildCote}</td>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildGM}</td>
             <td className="table-header" style={{color: this.state.ownColor, fontWeight: 'bold'}}>{guildFaction}</td>
@@ -144,7 +144,7 @@ class Leaderboard extends Component {
         } else {
             return <tr>
             <td className="table-header">{guildRank}</td>
-            <td className="table-header">{guildName}</td>
+            <td className="table-header">{guildName} ({win - loose})</td>
             <td className="table-header">{guildCote}</td>
             <td className="table-header">{guildGM}</td>
             <td className="table-header">{guildFaction}</td>
@@ -155,6 +155,7 @@ class Leaderboard extends Component {
     }
 
     render() {
+        console.log(this.state.guilds)
         if(this.props.ServerChoosed === "all"){
             return (
                 <div className="middleMenu-main scroller">
@@ -175,10 +176,10 @@ class Leaderboard extends Component {
                                 <tbody>
                                 {this.state.guilds.map(function(guild, i) {
                                         if (i + 1 === 1 || i + 1 === 2 || i + 1 === 3) {
-                                            return this.displayFirstSecondAndThirdOfLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction, guild.server)
+                                            return this.displayFirstSecondAndThirdOfLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction, guild.server, guild.win, guild.loose)
                                         }
                                         else {
-                                            return this.displayLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction, guild.server)
+                                            return this.displayLadder(i + 1, guild.guild_name, guild.pseudo, guild.cote, guild.faction, guild.server, guild.win, guild.loose)
                                         }
                                     }, this)
                                 }
@@ -207,6 +208,7 @@ class Leaderboard extends Component {
                                 </thead>
                                 <tbody>
                                 {this.state.guilds.filter(guild => guild.server === this.props.ServerChoosed).map(function(guildFiltered, i) {
+                                        console.log(guildFiltered.guild_name)
                                         if (i + 1 === 1 || i + 1 === 2 || i + 1 === 3) {
                                             return this.displayFirstSecondAndThirdOfLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server)
                                         }

@@ -14,7 +14,7 @@ class Douane extends Component {
     }
 
     async getAllGuild() {
-        await axios.get('http://54.37.74.45:5000/api/v1/getAccount')
+        await axios.get('http://54.37.74.45:5000/api/v1/findGuildWhoNeedToBeAccepted')
             .then(res => {
                 const guilds = res.data;
                 this.setState({ guilds });
@@ -53,16 +53,18 @@ class Douane extends Component {
         this.getAllGuild()
     }
 
-    componentDidUpdate(prevState){
-        if(prevState.guilds !== this.state.guilds){
+    componentDidUpdate(prevProps, prevState){
+        
+        if (prevState.guilds !== this.state.guilds) {
             console.log(this.state.guilds)
+            this.setState({ guilds: this.state.guilds });
         }
     }
 
     render() {
         if (this.props.Role === "admin") {
             return (
-                <div className="overview-main" style={{ margin: '0 auto', width: '80%' }}>
+                <div className="overview-main" style={{ margin: '0 auto'}}>
                     <div style={{ width: '100%' }}>
                         <p className="title">DOUANE</p>
                         <div className="overview-main-content">

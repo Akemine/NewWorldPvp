@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(35 34 32 / 80%);
+    background-color: #020202d1;
     margin: 0 auto;
     border-radius: 4px;
     height: 600px;
@@ -200,21 +200,21 @@
 .main{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .main-gvg{
     width: 40%;
 }
 .warWaiting-gvg{
-    background-color: rgb(35 34 32 / 80%);
+    background-color: #020202d1;
     width: 23%;
     border-radius: 4px;;
     height: 600px;
 }
 
 .warAccept-gvg{
-    background-color: rgb(35 34 32 / 80%);
+    background-color: #020202d1;
     width: 23%;
     border-radius: 4px;;
     height: 600px;
@@ -231,12 +231,12 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    height: 600px;
+    height:500px;
     overflow-y: auto;
 }
 
 .gvg-acceptwar-capsule{
-    background-color: #ffb10f0a;
+    background-color: #ffffff61;
     border-radius: 4px;;
     width: 85%;
     margin: 1%;
@@ -381,7 +381,8 @@ padding: 2px 16px;
   }
 
 .card_declared_war.pending{
-    background-color: #bf6b23;
+    background-color: white;
+    color: black;
 }
 
 .card_declared_war.accepted{

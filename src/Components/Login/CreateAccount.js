@@ -256,15 +256,31 @@ class CreateAccount extends React.Component {
         }
     }
 
+    async deleteIP(ip){
+        await fetch('http://54.37.74.45:5000/api/v1/deleteIP', {
+            method: "POST",
+            body: JSON.stringify({
+                "ip" : ip,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+    }
+
 
       checkIP(){
         let date = new Date()
         this.state.addressData.forEach(el => {
             if (el.ip === ip){
-                let diffDate = DateFunction.getDifferenceInDays(date, date)
+                let diffDate = date.getDate() - new Date(el.timestamp).getDate()
                 console.log(diffDate)
-                if(diffDate < 1.0){
+                if(diffDate === 0){
                     this.setState({ipAlreadyUsed: true})
+                }
+                else {
+                    this.deleteIP(ip)
                 }
             }
         })
@@ -277,7 +293,7 @@ class CreateAccount extends React.Component {
             <form className="form-display" style={{ backgroundColor: this.state.backgroundColorForm, transition: '0.5s' }}>
                 <h1 className="title-form">{txt_title}</h1><hr className="hr-form" />
                 <h3 className="title-form" style={{backgroundColor: 'crimson', padding: '4px', borderRadius: '4px'}}>You have to wait to create new guild.</h3><hr className="hr-form" />
-                <div className="flexbox-display" style={{ width: '80%' }}>
+                <div className="flexbox-display" style={{ width: '100%' }}>
                     <label className="label label-password label-form-bottom">Faction :</label>
                     <select disabled style={{ backgroundColor: this.state.backgroundColorFaction, color: this.state.colorFaction }} className="input-css-gvg-lieu firefox-margin-bottom" value={this.state.value} onChange={this.handleFaction} onClick={this.changeColor}>
                         <option selected disabled value="null">Choose your faction</option>
@@ -289,7 +305,7 @@ class CreateAccount extends React.Component {
                 <input disabled style={{ backgroundColor: this.state.backgroundColorPassword, color: this.state.colorPassword }} placeholder="Type your password" className="input-css createaccount-css" type="password" value={this.state.password} onChange={this.handlePassword} onClick={this.changeColor}/>
                 <label className="label label-password" >Pseudo (Guild Master) :</label>
                 <input disabled style={{ backgroundColor: this.state.backgroundColorPseudo, color: this.state.colorPseudo }} placeholder="Type your Pseudo" className="input-css createaccount-css" type="text" max="20" value={this.state.value} onChange={this.handlePseudo} onClick={this.changeColor}/>
-                <div className="flexbox-display " style={{ width: '80%', marginBottom: '2%' }}>
+                <div className="flexbox-display " style={{ width: '100%', marginBottom: '2%' }}>
                     <label className="label label-password label-form-bottom">Server :</label>
                     <select disabled style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }} className="input-css-gvg-lieu firefox-margin-bottom" value={this.state.value} onChange={this.handleServer}>
                         <option disabled selected value="Kvenland">Kvenland</option>
@@ -314,7 +330,7 @@ class CreateAccount extends React.Component {
                         <ToastContainer hideProgressBar={false} autoClose={5000} position="top-center" />
                         <form className="form-display" style={{ backgroundColor: this.state.backgroundColorForm, transition: '0.5s' }}>
                             <h1 className="title-form">{txt_title}</h1><hr className="hr-form" />
-                            <div className="flexbox-display" style={{ width: '80%' }}>
+                            <div className="flexbox-display" style={{ width: '100%' }}>
                                 <label className="label label-password label-form-bottom">Faction :</label>
                                 <select style={{ backgroundColor: this.state.backgroundColorFaction, color: this.state.colorFaction }} className="input-css-gvg-lieu firefox-margin-bottom" value={this.state.value} onChange={this.handleFaction} onClick={this.changeColor}>
                                     <option selected disabled value="null">Choose your faction</option>
@@ -329,7 +345,7 @@ class CreateAccount extends React.Component {
                             <input style={{ backgroundColor: this.state.backgroundColorPassword, color: this.state.colorPassword }} placeholder="Type your password" className="input-css createaccount-css" type="password" value={this.state.password} onChange={this.handlePassword} onClick={this.changeColor}/>
                             <label className="label label-password" >Pseudo (Guild Master) :</label>
                             <input style={{ backgroundColor: this.state.backgroundColorPseudo, color: this.state.colorPseudo }} placeholder="Type your Pseudo" className="input-css createaccount-css" type="text" max="20" value={this.state.value} onChange={this.handlePseudo} onClick={this.changeColor}/>
-                            <div className="flexbox-display " style={{ width: '80%', marginBottom: '2%' }}>
+                            <div className="flexbox-display " style={{ width: '100%', marginBottom: '2%' }}>
                                 <label className="label label-password label-form-bottom">Server :</label>
                                 <select style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }} className="input-css-gvg-lieu firefox-margin-bottom" value={this.state.value} onChange={this.handleServer}>
                                     <option selected value="Kvenland">Kvenland</option>

@@ -1,4 +1,5 @@
 import '../../Styles/Statistic/Stat.css'
+import '../../Styles/MainContent/LastResults.css'
 
 import React  from 'react';
 import { connect } from 'react-redux'
@@ -45,17 +46,21 @@ class Stat extends React.Component {
     }
 
 
-    displayMatch(idWar, dateWar, winner, looser, winner_cote, loose_cote, nombreJoueurs){
-        return <div className="container">
-            <div className="display-column">
-                <span style={{ color: 'white' }} className="bold-txt">WAR ID : {idWar} - {dateWar}</span>
-                <div className="display-row display-result">
-                    <span className="guild_win display-fake-btn looser">{winner} Wins (+{winner_cote})</span>
-                    <span className="guild_loose display-fake-btn winner">{looser} ({loose_cote})</span>
+    displayMatch(idWar, dateWar, winner, looser, winner_cote, loose_cote, nombreJoueurs, color){
+    return <div className="last_wars_capsule card-last-results" key={idWar}>
+              <div className="container" style={{backgroundColor: color, borderRadius: '4px'}}>
+                <div className="display-column">
+                  <span style={{color: 'white'}} className="bold-txt">WAR ID : {idWar} - {dateWar}</span>
+                  <div className="display-row display-result">
+                    <span className="guild_win display-fake-btn winner" style={{width: '40%'}}>{winner} <br/>(+{winner_cote})</span>
+
+                    <span className="guild_loose display-fake-btn looser" style={{width: '40%'}}>{looser } <br/>({loose_cote})</span>
+                  </div>
+                  <span className="bold-txt span-white">Team Size {nombreJoueurs}</span>
                 </div>
-                <span className="bold-txt span-white">Team Size {nombreJoueurs}</span>
+              </div>
             </div>
-        </div>
+
     }
 
     render() {
@@ -64,20 +69,17 @@ class Stat extends React.Component {
         } 
         else {
             return (
-                <div className="overview-main" style={{ margin: '0 auto', width: '50%' }}>
+                <div className="overview-main" style={{ margin: '0 auto', width: '60%' }}>
                     <div style={{ width: '100%' }}>
                         <p className="title">MY RESULTS</p>
                         <div className="last_wars_container">
                             {this.state.wars.reverse().map(function (last_war, i) {
                                 if (last_war.win_guild === this.props.Login) {
-                                    return <div className="last_wars_capsule card-last-results" style={{ backgroundColor: '#7aff0012' }} key={last_war.id}>
-                                        {this.displayMatch(last_war.id, last_war.date, last_war.win_guild, last_war.loose_guild, last_war.win_cote, last_war.loose_cote, last_war.nombrejoueurs)}
-                                    </div>
+                                    return this.displayMatch(last_war.id, last_war.date, last_war.win_guild, last_war.loose_guild, last_war.win_cote, last_war.loose_cote, last_war.nombrejoueurs, '#00800054')
                                 }
                                 else {
-                                    return <div className="last_wars_capsule card-last-results" style={{ backgroundColor: '#dc143c14' }} key={last_war.id}>
-                                        {this.displayMatch(last_war.id, last_war.date, last_war.win_guild, last_war.loose_guild, last_war.win_cote, last_war.loose_cote, last_war.nombrejoueurs)}
-                                    </div>
+                                    return this.displayMatch(last_war.id, last_war.date, last_war.win_guild, last_war.loose_guild, last_war.win_cote, last_war.loose_cote, last_war.nombrejoueurs, '#ed143d4d')
+                                  
                                 }
                             }, this)}
                         </div>

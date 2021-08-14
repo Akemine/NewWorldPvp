@@ -123,7 +123,7 @@ class warWaiting extends React.Component {
                             if(!war.archive){
                                 if (war.accepted === null) {
                                     return <>
-                                        <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#ffa1051c'}}>
+                                        <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#ff8405'}}>
                                             <div className="container" key={war.id}>
                                                 <h3 style={{ color: 'white' }} className="bold-txt">WAR ID : {war.id} - {war.guild_attaquer}</h3>
                                                 <div style={{ color: 'white' }} className="bold-txt">{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players - {war.lieu}</div>
@@ -135,7 +135,7 @@ class warWaiting extends React.Component {
                                 }
                                 else if (war.accepted) {
                                     return <>
-                                        <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#76ff050d'}}>
+                                        <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#32f9004f'}}>
                                             <div className="container" key={war.id} style={{width: '100%'}} >
                                                 <h3 style={{ color: 'white' }} className="bold-txt">WAR ID : {war.id} - {war.guild_attaquer}</h3>
                                                 <div style={{ color: 'white' }} className="bold-txt">{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players - {war.lieu}</div>
@@ -150,7 +150,7 @@ class warWaiting extends React.Component {
                                 }
                                 else if (!war.accepted) {
                                     return <>
-                                        <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#ff05050d'}}>
+                                        <div className="list-flexbox-leaderboard-gvg card" style={{ backgroundColor: '#ffffff63'}}>
                                             <div className="container" key={war.id} >
                                                 <h3 style={{ color: 'white' }} className="bold-txt">WAR ID : {war.id} - {war.guild_attaquer}</h3>
                                                 <div style={{ color: 'white' }} className="bold-txt">{war.heure} | {war.date_war}<br /> {war.nombrejoueurs} Players - {war.lieu}</div>

@@ -1,7 +1,7 @@
 .stat-main{
     display: flex;
     justify-content: center;
-    background-color: rgb(35 34 32 / 80%);
+    background-color: black;
     height: 700px;
     border-radius: 4px;
 }

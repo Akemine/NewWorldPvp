@@ -366,7 +366,7 @@ class FormGvg extends React.Component {
                 <label className="label-name-gvg label bold-txt firefox-margin-top label-form-bottom">Date : MM/DD/YYYY ({date})</label>
                 <input style={{ backgroundColor: this.state.backgroundColor_date }} className="input-css-gvg firefox-margin-bottom form-m-b" type="datetime" placeholder="MM/DD/YYYY" value={this.state.date} onChange={this.handleDate} onFocus={() => this.changeBgColor()} />
                 
-                <label className="label label-password bold-txt label-form-bottom">Zone :</label>
+                <label className="label label-password-form-gvg bold-txt label-form-bottom">Zone :</label>
                 <select style={{ backgroundColor: this.state.backgroundColor }} className="input-css-gvg-ampm firefox-margin-bottom form-m-b" value={this.state.value} onChange={this.handleLieu}>
                             <option selected value="First Light">First Light</option>
                             <option value="Brightwood">Brightwood</option>
@@ -382,7 +382,7 @@ class FormGvg extends React.Component {
                     </div>
                     <div>
                         <div className="flexbox-display">
-                            <label className="label label-password bold-txt label-form-bottom" >AM/PM :</label>
+                            <label className="label label-password-form-gvg bold-txt label-form-bottom" >AM/PM :</label>
                             <select style={{ backgroundColor: this.state.backgroundColor, width: '100%' }} className="input-css-gvg-lieu firefox-margin-bottom form-m-b" value={this.state.value} onChange={this.handleAMPM}>
                                 <option value="AM">AM</option>
                                 <option selected value="PM">PM</option>
@@ -390,7 +390,7 @@ class FormGvg extends React.Component {
                         </div>
                     </div>
                 </div>
-                <label className="label label-password bold-txt label-form-bottom" >Team size :</label>
+                <label className="label label-password-form-gvg bold-txt label-form-bottom" >Team size :</label>
                 <input style={{ backgroundColor: this.state.backgroundColor_players }} placeholder="(Example : 25 for 25vs25)" className="input-css-gvg firefox-margin-bottom form-m-b" type="number" max="100" min="1" value={this.state.players} onChange={this.handlePlayers} onFocus={() => this.changeBgColor()} />
                 <input className="btn-submit-gvg" type="submit" value="Declare War !" onClick={this.handleSubmit} />
             </form>

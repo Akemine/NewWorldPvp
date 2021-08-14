@@ -2,7 +2,7 @@
 /* ECRAN 4K SA MERE (2560px) */
 @media all and (min-width: 1921px) and (max-width: 2560px){
     .middleMenu-main{
-        background-color: rgb(35 34 32 / 70%);
+        background-color: #020202d1;
         width: 49%;
         height: 600px;
         border-radius: 4px;
@@ -12,7 +12,7 @@
     }
 
     .middleMenu-leaderboard{
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -20,7 +20,7 @@
 /* ECRAN GRANDE TAILLE (1920px) */
 @media all and (min-width: 1441px) and (max-width: 1920px){
     .middleMenu-main{
-        background-color: rgb(35 34 32 / 70%);
+        background-color: #020202d1;
         width: 49%;
         height: 600px;
         border-radius: 4px;
@@ -28,16 +28,17 @@
         justify-content: inherit;
         overflow-y: auto;
     }
-
     .middleMenu-leaderboard{
-        width: 80%;
+        width: 100%;
     }
+
+
 }
 
 /* ECRAN MOYENNE TAILLE (1440px) */
 @media all and (min-width: 1024px) and (max-width: 1440px){
     .middleMenu-main{
-        background-color: blue;
+        background-color: #020202d1;
         width: 49%;
         height: 600px;
         border-radius: 4px;
@@ -45,10 +46,10 @@
         justify-content: inherit;
         overflow-y: auto;
     }
-
     .middleMenu-leaderboard{
-        width: 80%;
+        width: 100%;
     }
+
 }
 
 /* ECRAN PETIT TAILLE (TELEPHONE) (1000px) */
@@ -66,7 +67,7 @@
     }
 
     .middleMenu-leaderboard{
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -102,13 +103,6 @@
 }
 .third-ladder{
     font-weight: bold;
-}
-
-.list-leaderboard{
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .list-flexbox-leaderboard-connected{
