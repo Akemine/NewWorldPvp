@@ -210,10 +210,10 @@ class Leaderboard extends Component {
                                 {this.state.guilds.filter(guild => guild.server === this.props.ServerChoosed).map(function(guildFiltered, i) {
                                         console.log(guildFiltered.guild_name)
                                         if (i + 1 === 1 || i + 1 === 2 || i + 1 === 3) {
-                                            return this.displayFirstSecondAndThirdOfLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server)
+                                            return this.displayFirstSecondAndThirdOfLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server, guildFiltered.win, guildFiltered.loose)
                                         }
                                         else {
-                                            return this.displayLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server)
+                                            return this.displayLadder(i + 1, guildFiltered.guild_name, guildFiltered.pseudo, guildFiltered.cote, guildFiltered.faction, guildFiltered.server, guildFiltered.win, guildFiltered.loose)
                                         }
                                     }, this)
                                 }

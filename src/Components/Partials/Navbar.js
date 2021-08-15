@@ -31,8 +31,8 @@ class Navbar extends React.Component {
     this.props.Unlogged()
   }
 
-  async getCountWarDeclared() {
-    await fetch('http://54.37.74.45:5000/api/v1/getCountMyWarIHaveToAccept', {
+  getCountWarDeclared() {
+     fetch('http://54.37.74.45:5000/api/v1/getCountMyWarIHaveToAccept', {
         method: "POST",
         body: JSON.stringify({
             "myGuild": this.props.Login,
@@ -43,18 +43,20 @@ class Navbar extends React.Component {
     })
         .then(response => response.json())
         .then(response => {
-          
+          console.log(response)
           this.setState({ tampon: response })
         })
   }
 
   componentDidMount(){
-    this.getCountWarDeclared()
   }
 
   componentDidUpdate(prevProps, prevState){
     if(prevState.tampon !== this.state.tampon){
       this.setState({countWarDeclared: this.state.tampon[0].count})
+    }
+    if(prevProps.Login !== this.props.Login){
+      this.getCountWarDeclared()
     }
   }
 
